@@ -1,6 +1,6 @@
-﻿using System.Runtime.InteropServices;
-using HotelManagement.Domain.Constants;
+﻿using HotelManagement.Domain.Constants;
 using HotelManagement.Domain.Entities;
+using HotelManagement.Domain.Enums;
 using HotelManagement.Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -67,16 +67,39 @@ public class ApplicationDbContextInitialiser
 
     public async Task TrySeedAsync()
     {
-        // Default roles
+        #region Seed Roles and Users
+
         var administratorRole = new IdentityRole(Roles.Administrator);
+        var customerRole = new IdentityRole(Roles.Customer);
+        var receptionistRole = new IdentityRole(Roles.Receptionist);
+        var cleanerRole = new IdentityRole(Roles.Cleaner);
 
         if (_roleManager.Roles.All(r => r.Name != administratorRole.Name))
         {
             await _roleManager.CreateAsync(administratorRole);
         }
 
-        // Default users
+        if (_roleManager.Roles.All(r => r.Name != customerRole.Name))
+        {
+            await _roleManager.CreateAsync(customerRole);
+        }
+
+        if (_roleManager.Roles.All(r => r.Name != receptionistRole.Name))
+        {
+            await _roleManager.CreateAsync(receptionistRole);
+        }
+
+        if (_roleManager.Roles.All(r => r.Name != cleanerRole.Name))
+        {
+            await _roleManager.CreateAsync(cleanerRole);
+        }
+
+        // Create default users (admin, customer, receptionist, cleaner)
         var administrator = new ApplicationUser { UserName = "administrator@localhost", Email = "administrator@localhost" };
+        var customer = new ApplicationUser { UserName = "customer@localhost", Email = "customer@localhost" };
+        var receptionist = new ApplicationUser { UserName = "receptionist@localhost", Email = "receptionist@localhost" };
+        var cleaner = new ApplicationUser { UserName = "cleaner@localhost", Email = "cleaner@localhost" };
+
 
         if (_userManager.Users.All(u => u.UserName != administrator.UserName))
         {
@@ -86,6 +109,37 @@ public class ApplicationDbContextInitialiser
                 await _userManager.AddToRolesAsync(administrator, new [] { administratorRole.Name });
             }
         }
+
+        if (_userManager.Users.All(u => u.UserName != customer.UserName))
+        {
+            await _userManager.CreateAsync(customer, "Customer1!");
+            if (!string.IsNullOrWhiteSpace(customerRole.Name))
+            {
+                await _userManager.AddToRolesAsync(customer, new[] { customerRole.Name });
+            }
+        }
+
+        if (_userManager.Users.All(u => u.UserName != receptionist.UserName))
+        {
+            await _userManager.CreateAsync(receptionist, "Receptionist1!");
+            if (!string.IsNullOrWhiteSpace(receptionistRole.Name))
+            {
+                await _userManager.AddToRolesAsync(receptionist, new[] { receptionistRole.Name });
+            }
+        }
+
+        if (_userManager.Users.All(u => u.UserName != cleaner.UserName))
+        {
+            await _userManager.CreateAsync(cleaner, "Cleaner1!");
+            if (!string.IsNullOrWhiteSpace(cleanerRole.Name))
+            {
+                await _userManager.AddToRolesAsync(cleaner, new[] { cleanerRole.Name });
+            }
+        }
+
+        #endregion
+
+        #region Seed Data (Rooms, Bookings)
 
         // Default data
         // Seed, if necessary
@@ -105,5 +159,27 @@ public class ApplicationDbContextInitialiser
 
             await _context.SaveChangesAsync();
         }
+
+        // Seed the rooms if necessary
+        if (!_context.Rooms.Any())
+        {
+            _context.Rooms.Add(Room.Create(1, RoomStatus.New ,RoomType.Simple, true, true));
+            _context.Rooms.Add(Room.Create(2, RoomStatus.NoIssue, RoomType.Double, true, true));
+            _context.Rooms.Add(Room.Create(5, RoomStatus.Renovated, RoomType.Suite, true, true));
+
+            await _context.SaveChangesAsync();
+        }
+
+        // Seed the bookings if necessary
+        if (!_context.Bookings.Any())
+        {
+            var room = _context.Rooms.First();
+
+            _context.Bookings.Add(Booking.Create(DateTime.Now.AddDays(5), DateTime.Now.AddDays(10), room));
+
+            await _context.SaveChangesAsync();
+        }
+
+        #endregion
     }
 }
