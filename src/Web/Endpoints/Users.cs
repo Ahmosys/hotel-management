@@ -9,4 +9,6 @@ public class Users : EndpointGroupBase
         app.MapGroup(this)
             .MapIdentityApi<ApplicationUser>();
     }
+
+
 }
