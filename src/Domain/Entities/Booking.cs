@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace HotelManagement.Domain.Entities;
 
 public class Booking : BaseAuditableEntity
@@ -30,10 +28,6 @@ public class Booking : BaseAuditableEntity
     // Use a static factory method to create a new booking
     public static Booking Create(DateTimeOffset startDate, DateTimeOffset endDate, Room room)
     {
-        // Check if the start date is before the end date
-        if (startDate >= endDate)
-            throw new ArgumentException("Start date must be before end date.", nameof(startDate));
-
         // Create a new booking
         var booking = new Booking
         {
