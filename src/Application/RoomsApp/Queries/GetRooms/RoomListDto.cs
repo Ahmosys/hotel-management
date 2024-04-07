@@ -16,7 +16,7 @@ public class RoomListDto
 
     public int Capacity { get; set; }
 
-    public decimal Rate { get; private set; }
+    public decimal Rate { get; set; }
 
     public IReadOnlyCollection<RoomItemDto> Items { get; init; }
 
@@ -28,4 +28,18 @@ public class RoomListDto
             CreateMap<TodoList, TodoListDto>();
         }
     }*/
+}
+
+
+public static class RoomMapper
+{
+    public static RoomListDto MapToRoomListDto(Room room)
+    {
+        return new RoomListDto
+        {
+            Capacity = room.Capacity,
+            Rate = room.Rate
+            // Mappez d'autres propriétés si nécessaire
+        };
+    }
 }

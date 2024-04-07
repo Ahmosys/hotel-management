@@ -30,6 +30,11 @@ public class GetRoomsQueryHandler : IRequestHandler<GetRoomsQuery, RoomsVm>
     public async Task<RoomsVm> Handle(GetRoomsQuery request, CancellationToken cancellationToken)
     {
 
+        var rooms = await _roomRepository.GetRoomsAsync(cancellationToken);
+
+        // Mapper les entités Room vers les DTO RoomListDto
+        var roomDtos = rooms.Select(RoomMapper.MapToRoomListDto).ToList();
+
 
         return new RoomsVm
         {
@@ -38,8 +43,7 @@ public class GetRoomsQueryHandler : IRequestHandler<GetRoomsQuery, RoomsVm>
                .Select(p => new LookupDto { Id = (int)p, Title = p.ToString() })
             .ToList(),
 
-            Lists = (IReadOnlyCollection<RoomListDto>)await _roomRepository
-            .GetRoomsAsync(cancellationToken)
+            Lists = roomDtos
         };
     }
 }
