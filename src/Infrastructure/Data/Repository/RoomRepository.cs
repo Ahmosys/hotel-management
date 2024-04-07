@@ -15,9 +15,25 @@ internal sealed class RoomRepository : IRoomRepository
         _dbContext = dbContext;
     }
 
+    public async Task<List<Room>> GetAvailableRoomsAsync(DateTimeOffset startDate, DateTimeOffset endDate, CancellationToken cancellationToken = default)
+    {
+        var roomsAvailable = await _dbContext.Rooms
+            .Where(r => r.IsAvailable && !r.Bookings.Any(booking =>
+                (startDate < booking.EndDate && endDate > booking.StartDate)))
+            .ToListAsync(cancellationToken);
+
+        return roomsAvailable;
+    }
+
+
     public async Task<List<Room>> GetRoomsAsync(CancellationToken cancellationToken = default)
     {
-        return await _dbContext.Rooms.ToListAsync();
+        var roomsWithBookings = await _dbContext.Rooms
+            .Where(r => r.Bookings.Any())
+            .Include(r => r.Bookings)
+            .ToListAsync(cancellationToken);
+
+        return roomsWithBookings;
     }
 }
 

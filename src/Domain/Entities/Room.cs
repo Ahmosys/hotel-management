@@ -3,21 +3,21 @@ namespace HotelManagement.Domain.Entities;
 public class Room : BaseAuditableEntity
 {
     #region Properties
-    private readonly List<Booking> _bookings = new();
-
     public int Capacity { get; private set; }
 
     public decimal Rate { get; private set; }
 
     public RoomStatus Status { get; private set; }
-    
+
     public RoomType Type { get; private set; }
 
     public bool IsClean { get; private set; }
 
     public bool IsAvailable { get; private set; }
 
-    public IReadOnlyCollection<Booking> Bookings => _bookings;
+    // The bookings are not loaded by default becauses EF Core uses lazy loading
+    // to avoid loading all the bookings when we load a room
+    public IList<Booking> Bookings { get; private set; } = new List<Booking>();
 
     #endregion
 
@@ -78,12 +78,12 @@ public class Room : BaseAuditableEntity
         var booking = Booking.Create(startDate, endDate, this);
 
         // Add the booking to the room
-        AddBooking(booking);
+        AddNewBooking(booking);
 
         return booking;
     }
 
-    private bool IsAvailableFor(DateTimeOffset startDate, DateTimeOffset endDate)
+    public bool IsAvailableFor(DateTimeOffset startDate, DateTimeOffset endDate)
     {
         return !Bookings.Any(booking =>
                 (startDate >= booking.StartDate && startDate <= booking.EndDate) ||
@@ -119,9 +119,9 @@ public class Room : BaseAuditableEntity
     }
 
     // We don't need to have methods to delete a booking bcz we have already a property isCancelled in Booking entity
-    public void AddBooking(Booking booking)
+    public void AddNewBooking(Booking booking)
     {
-        _bookings.Add(booking);
+        Bookings.Add(booking);
     }
 
     #endregion

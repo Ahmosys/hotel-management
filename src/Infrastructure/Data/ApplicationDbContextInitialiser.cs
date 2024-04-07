@@ -67,7 +67,7 @@ public class ApplicationDbContextInitialiser
 
     public async Task TrySeedAsync()
     {
-        #region Seed Roles and Users
+        #region Seed Data (Roles, Users)
 
         var administratorRole = new IdentityRole(Roles.Administrator);
         var customerRole = new IdentityRole(Roles.Customer);
@@ -175,7 +175,7 @@ public class ApplicationDbContextInitialiser
         {
             var room = _context.Rooms.First();
 
-            _context.Bookings.Add(Booking.Create(DateTime.Now.AddDays(5), DateTime.Now.AddDays(10), room));
+            room.CreateBooking(DateTime.Now.AddDays(5), DateTime.Now.AddDays(10));
 
             await _context.SaveChangesAsync();
         }

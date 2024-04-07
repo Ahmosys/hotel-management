@@ -7,11 +7,8 @@
 
   <ItemGroup>
     <Compile Remove="Bookings\**" />
-    <Compile Remove="Rooms\**" />
     <EmbeddedResource Remove="Bookings\**" />
-    <EmbeddedResource Remove="Rooms\**" />
     <None Remove="Bookings\**" />
-    <None Remove="Rooms\**" />
   </ItemGroup>
 
   <ItemGroup>

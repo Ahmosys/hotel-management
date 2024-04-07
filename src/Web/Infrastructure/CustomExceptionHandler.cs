@@ -59,7 +59,7 @@ public class CustomExceptionHandler : IExceptionHandler
         {
             Status = StatusCodes.Status404NotFound,
             Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
-            Title = "The specified resource was not found.",
+            Title = "The request was not found.",
             Detail = exception.Message
         });
     }

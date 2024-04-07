@@ -1,4 +1,5 @@
-﻿using Azure.Identity;
+﻿using System.Text.Json.Serialization;
+using Azure.Identity;
 using HotelManagement.Application.Common.Interfaces;
 using HotelManagement.Infrastructure.Data;
 using HotelManagement.Web.Services;
@@ -13,6 +14,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddWebServices(this IServiceCollection services)
     {
+        services.Configure<AspNetCore.Http.Json.JsonOptions>(options => options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddScoped<IUser, CurrentUser>();
@@ -42,7 +45,7 @@ public static class DependencyInjection
                 Type = OpenApiSecuritySchemeType.ApiKey,
                 Name = "Authorization",
                 In = OpenApiSecurityApiKeyLocation.Header,
-                Description = "Type into the textbox: Bearer {your JWT token}."
+                Description = "Type into the textbox: Bearer {your JWT token}.",
             });
 
             configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));

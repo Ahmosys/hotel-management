@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using HotelManagement.Application.Common.Behaviours;
-using HotelManagement.Domain.Repository;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

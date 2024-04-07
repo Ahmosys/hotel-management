@@ -1,6 +1,5 @@
-﻿using HotelManagement.Application.RoomsApp.Queries.GetRooms;
+﻿using HotelManagement.Application.Rooms.Queries.GetAvailableRooms;
 using HotelManagement.Application.TodoLists.Queries.GetTodos;
-using HotelManagement.Application.WeatherForecasts.Queries.GetWeatherForecasts;
 
 namespace HotelManagement.Web.Endpoints;
 
@@ -10,11 +9,11 @@ public class Rooms : EndpointGroupBase
     {
         app.MapGroup(this)
             .RequireAuthorization()
-            .MapGet(GetRoomsList);
+            .MapGet(GetAvailableRooms);
     }
 
-    public Task<RoomsVm> GetRoomsList(ISender sender)
+    public Task<List<AvailableRoomDto>> GetAvailableRooms(ISender sender, [AsParameters] GetAvailableRoomsQuery query)
     {
-        return sender.Send(new GetRoomsQuery());
+        return sender.Send(query);
     }
 }
