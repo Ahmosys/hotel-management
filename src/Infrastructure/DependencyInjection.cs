@@ -1,5 +1,6 @@
 ﻿using HotelManagement.Application.Common.Interfaces;
 using HotelManagement.Domain.Constants;
+using HotelManagement.Domain.Repository;
 using HotelManagement.Infrastructure.Data;
 using HotelManagement.Infrastructure.Data.Interceptors;
 using HotelManagement.Infrastructure.Identity;
@@ -20,6 +21,7 @@ public static class DependencyInjection
 
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+        services.AddScoped<IRoomRepository, RoomRepository>();
 
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
@@ -48,6 +50,8 @@ public static class DependencyInjection
 
         services.AddAuthorization(options =>
             options.AddPolicy(Policies.CanPurge, policy => policy.RequireRole(Roles.Administrator)));
+
+
 
         return services;
     }
