@@ -53,12 +53,16 @@ public class Booking : BaseAuditableEntity
     // Pay the booking
     public void MarkAsPay()
     {
+        if (IsPaid)
+            throw new DomainException("Booking is already paid.");
         IsPaid = true;
     }
 
     // Cancel the booking
     public void MarkAsCancelled()
     {
+        if (IsCancelled)
+            throw new DomainException("Booking is already cancelled.");
         IsCancelled = true;
     }
 

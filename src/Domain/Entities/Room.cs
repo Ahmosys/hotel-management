@@ -30,7 +30,7 @@ public class Room : BaseAuditableEntity
     {
         // Check if the capacity is greater than zero
         if (capacity <= 0)
-            throw new ArgumentException("Capacity must be greater than zero.", nameof(capacity));
+            throw new DomainException("Capacity must be greater than zero.");
 
         // Create a new room
         var room = new Room
@@ -92,21 +92,29 @@ public class Room : BaseAuditableEntity
 
     public void MarkAsClean()
     {
+        if (IsClean)
+            throw new DomainException("Room is already clean.");
         IsClean = true;
     }
 
     public void MarkAsDirty()
     {
+        if (!IsClean)
+            throw new DomainException("Room is already dirty.");
         IsClean = false;
     }
 
     public void MarkAsAvailable()
     {
+        if (IsAvailable)
+            throw new DomainException("Room is already available.");
         IsAvailable = true;
     }
 
     public void MarkAsUnavailable()
     {
+        if (!IsAvailable)
+            throw new DomainException("Room is already unavailable.");
         IsAvailable = false;
     }
 
