@@ -2,7 +2,7 @@ namespace HotelManagement.Domain.Repository;
 
 public interface IRoomRepository
 {
-    Task<Room?> GetRoomByIdAsync(int id);
+    Task<Room?> GetRoomByIdAsync(int id, CancellationToken cancellationToken = default);
 
     Task<List<Room>> GetRoomsAsync(CancellationToken cancellationToken = default);
 

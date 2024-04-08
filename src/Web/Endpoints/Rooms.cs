@@ -1,7 +1,6 @@
 ﻿using HotelManagement.Application.Rooms.Commands.MarkRoomAsClean;
 using HotelManagement.Application.Rooms.Queries.GetAvailableRooms;
 using HotelManagement.Application.Rooms.Queries.GetRoomsToClean;
-using Microsoft.AspNetCore.Mvc;
 
 namespace HotelManagement.Web.Endpoints;
 

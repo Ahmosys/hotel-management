@@ -1,5 +1,4 @@
-﻿using HotelManagement.Application.Common.Interfaces;
-using HotelManagement.Application.Common.Security;
+﻿using HotelManagement.Application.Common.Security;
 using HotelManagement.Domain.Constants;
 using HotelManagement.Domain.Repository;
 
@@ -22,7 +21,7 @@ public class MarkRoomAsCleanCommandHandler : IRequestHandler<MarkRoomAsCleanComm
 
     public async Task Handle(MarkRoomAsCleanCommand request, CancellationToken cancellationToken)
     {
-        var entity = await _roomRepository.GetRoomByIdAsync(request.Id);
+        var entity = await _roomRepository.GetRoomByIdAsync(request.Id, cancellationToken);
 
         Guard.Against.NotFound(request.Id, entity);
 

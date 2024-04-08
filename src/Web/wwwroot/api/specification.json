@@ -6,6 +6,43 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/bookings": {
+      "post": {
+        "tags": [
+          "Bookings"
+        ],
+        "operationId": "CreateBooking",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookingCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/rooms/available": {
       "get": {
         "tags": [
@@ -877,6 +914,183 @@
   },
   "components": {
     "schemas": {
+      "Booking": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseAuditableEntity"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "startDate": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "endDate": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "isPaid": {
+                "type": "boolean"
+              },
+              "isCancelled": {
+                "type": "boolean"
+              },
+              "isRefunded": {
+                "type": "boolean"
+              },
+              "room": {
+                "$ref": "#/components/schemas/Room"
+              }
+            }
+          }
+        ]
+      },
+      "Room": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseAuditableEntity"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "capacity": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "rate": {
+                "type": "number",
+                "format": "decimal"
+              },
+              "status": {
+                "$ref": "#/components/schemas/RoomStatus"
+              },
+              "type": {
+                "$ref": "#/components/schemas/RoomType"
+              },
+              "isClean": {
+                "type": "boolean"
+              },
+              "isAvailable": {
+                "type": "boolean"
+              },
+              "bookings": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "RoomStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "New",
+          "Renovated",
+          "NeedsRenovation",
+          "NoIssue",
+          "Damaged"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "RoomType": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Simple",
+          "Double",
+          "Suite"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "BaseAuditableEntity": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEntity"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "properties": {
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "createdBy": {
+                "type": "string",
+                "nullable": true
+              },
+              "lastModified": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "lastModifiedBy": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "BaseEntity": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "domainEvents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseEvent"
+            }
+          }
+        }
+      },
+      "BaseEvent": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "CreateBookingCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "roomId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "payDirectly": {
+            "type": "boolean"
+          }
+        }
+      },
       "AvailableRoomDto": {
         "type": "object",
         "additionalProperties": false,
@@ -897,20 +1111,6 @@
             "$ref": "#/components/schemas/RoomType"
           }
         }
-      },
-      "RoomType": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "Simple",
-          "Double",
-          "Suite"
-        ],
-        "enum": [
-          0,
-          1,
-          2
-        ]
       },
       "RoomToCleanDto": {
         "type": "object",
@@ -938,24 +1138,6 @@
             "type": "boolean"
           }
         }
-      },
-      "RoomStatus": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "New",
-          "Renovated",
-          "NeedsRenovation",
-          "NoIssue",
-          "Damaged"
-        ],
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
       },
       "MarkRoomAsCleanCommand": {
         "type": "object",

@@ -3,6 +3,7 @@ using HotelManagement.Domain.Constants;
 using HotelManagement.Domain.Repository;
 using HotelManagement.Infrastructure.Data;
 using HotelManagement.Infrastructure.Data.Interceptors;
+using HotelManagement.Infrastructure.Data.Repository;
 using HotelManagement.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ public static class DependencyInjection
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
         services.AddScoped<IRoomRepository, RoomRepository>();
+        services.AddScoped<IBookingRepository, BookingRepository>();
 
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {

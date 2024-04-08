@@ -3,6 +3,7 @@ namespace HotelManagement.Domain.Entities;
 public class Room : BaseAuditableEntity
 {
     #region Properties
+
     public int Capacity { get; private set; }
 
     public decimal Rate { get; private set; }
@@ -15,9 +16,7 @@ public class Room : BaseAuditableEntity
 
     public bool IsAvailable { get; private set; }
 
-    // The bookings are not loaded by default becauses EF Core uses lazy loading
-    // to avoid loading all the bookings when we load a room
-    public IList<Booking> Bookings { get; private set; } = new List<Booking>();
+    public virtual IList<Booking> Bookings { get; private set; } = new List<Booking>();
 
     #endregion
 
@@ -25,7 +24,6 @@ public class Room : BaseAuditableEntity
 
     private Room() { }
 
-    // Use a static factory method to create a new room
     public static Room Create(int capacity, RoomStatus status, RoomType type, bool isClean, bool isAvailable)
     {
         // Check if the capacity is greater than zero
@@ -52,9 +50,11 @@ public class Room : BaseAuditableEntity
 
     #region Methods
 
+    /// <summary>
+    /// Calculate the rate of the room based on the type.
+    /// </summary>
     private decimal CalculateRate()
     {
-        // Here we use switch expression to define the rate of the room based on the type enum
         return Type switch
         {
             RoomType.Simple => 100,
@@ -64,32 +64,20 @@ public class Room : BaseAuditableEntity
         };
     }
 
-    public Booking CreateBooking(DateTimeOffset startDate, DateTimeOffset endDate)
-    {
-        // Check if the start date is before the end date
-        if (startDate >= endDate)
-            throw new ArgumentException("Start date must be before end date.", nameof(startDate));
-
-        // Check if the room is available for the given dates
-        if (!IsAvailableFor(startDate, endDate))
-            throw new InvalidOperationException("Room is not available for the given dates.");
-
-        // Create a new booking
-        var booking = Booking.Create(startDate, endDate, this);
-
-        // Add the booking to the room
-        AddNewBooking(booking);
-
-        return booking;
-    }
-
+    /// <summary>
+    /// Check if the room is available for the given dates.
+    /// </summary>
     public bool IsAvailableFor(DateTimeOffset startDate, DateTimeOffset endDate)
     {
+        // TODO: Need to activate eadger loading otherwise it will not load all the bookings
         return !Bookings.Any(booking =>
                 (startDate >= booking.StartDate && startDate <= booking.EndDate) ||
                 (endDate >= booking.StartDate && endDate <= booking.EndDate));
     }
 
+    /// <summary>
+    /// Mark the room as clean when the cleaner cleans the room.
+    /// </summary>
     public void MarkAsClean()
     {
         if (IsClean)
@@ -97,6 +85,10 @@ public class Room : BaseAuditableEntity
         IsClean = true;
     }
 
+    /// <summary>
+    /// Mark the room as dirty when the customer checks out.
+    /// </summary>
+    /// <exception cref="DomainException"></exception>
     public void MarkAsDirty()
     {
         if (!IsClean)
@@ -104,6 +96,10 @@ public class Room : BaseAuditableEntity
         IsClean = false;
     }
 
+    /// <summary>
+    /// Mark the room as available when the customer checks out.
+    /// </summary>
+    /// <exception cref="DomainException"></exception>
     public void MarkAsAvailable()
     {
         if (IsAvailable)
@@ -111,18 +107,15 @@ public class Room : BaseAuditableEntity
         IsAvailable = true;
     }
 
+    /// <summary>
+    /// Mark the room as unavailable when the customer checks in.
+    /// </summary>
+    /// <exception cref="DomainException"></exception>
     public void MarkAsUnavailable()
     {
         if (!IsAvailable)
             throw new DomainException("Room is already unavailable.");
         IsAvailable = false;
     }
-
-    // We don't need to have methods to delete a booking bcz we have already a property isCancelled in Booking entity
-    public void AddNewBooking(Booking booking)
-    {
-        Bookings.Add(booking);
-    }
-
     #endregion
 }

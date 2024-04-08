@@ -175,7 +175,7 @@ public class ApplicationDbContextInitialiser
         {
             var room = _context.Rooms.First();
 
-            room.CreateBooking(DateTime.Now.AddDays(5), DateTime.Now.AddDays(10));
+            Booking.Create(DateTime.Now.AddDays(5), DateTime.Now.AddDays(10), room);
 
             await _context.SaveChangesAsync();
         }

@@ -5,8 +5,6 @@ public class Booking : BaseAuditableEntity
 
     #region Properties
 
-    // The start date and end date of the booking
-    // can't be changed after the booking is created
     public DateTimeOffset StartDate { get; private set; }
 
     public DateTimeOffset EndDate { get; private set; }
@@ -17,6 +15,9 @@ public class Booking : BaseAuditableEntity
     // By default a booking is not cancelled
     public bool IsCancelled { get; private set; } = false;
 
+    // By default a booking is not refunded because it is not cancelled
+    public bool IsRefunded { get; private set; } = false;
+
     public Room Room { get; private set; } = null!;
 
     #endregion
@@ -25,9 +26,19 @@ public class Booking : BaseAuditableEntity
 
     private Booking() { }
 
-    // Use a static factory method to create a new booking
+    /// <summary>
+    /// Create a new Booking with use of static factory method to ensure integrity and consistency.
+    /// </summary>
     public static Booking Create(DateTimeOffset startDate, DateTimeOffset endDate, Room room)
     {
+        // Check if the start date is before the end date
+        if (startDate >= endDate)
+            throw new DomainException("Start date must be before end date.");
+
+        // Check if the room is available for the given dates
+        if (!room.IsAvailableFor(startDate, endDate))
+            throw new DomainException("Room is not available for the given dates.");
+
         // Create a new booking
         var booking = new Booking
         {
@@ -43,26 +54,61 @@ public class Booking : BaseAuditableEntity
 
     #region Methods
 
-    // Checks if a booking is refundable
-    // If the booking is within 48 hours of the start date, it is not refundable
+    /// <summary>
+    /// Check if a booking is refundable by verify if the cancel date
+    /// is less than 48 hours from the start date.
+    /// </summary>
     public bool IsRefundable()
     {
         return StartDate.Subtract(DateTime.Now).TotalHours <= 48;
     }
 
-    // Pay the booking
-    public void MarkAsPay()
+    /// <summary>
+    /// Pay for a booking by calling the payment gateway service.
+    /// </summary>
+    public void Pay()
     {
         if (IsPaid)
             throw new DomainException("Booking is already paid.");
+
+        // TODO: Call here the fake payment gateway OR deplace the logic in specific domain service
+
+        // Mark the booking as paid
         IsPaid = true;
     }
 
-    // Cancel the booking
-    public void MarkAsCancelled()
+    /// <summary>
+    /// Cancel a booking and refund the payment if it is refundable.
+    /// </summary>
+    public void Cancel()
     {
         if (IsCancelled)
             throw new DomainException("Booking is already cancelled.");
+
+        if (!IsPaid)
+            throw new DomainException("Booking must be paid to be cancelled.");
+
+        if (IsRefundable())
+            IsRefunded = true;
+
+        IsCancelled = true;
+    }
+
+    /// <summary>
+    /// Instantly cancel a booking without checking if it is refundable
+    /// and refund the payment if required.
+    /// </summary>
+    public void InstantCancel(bool withRefund)
+    {
+        if (IsCancelled)
+            throw new DomainException("Booking is already cancelled.");
+
+        if (!IsPaid)
+            throw new DomainException("Booking must be paid to be cancelled.");
+
+        if (withRefund)
+            IsRefunded = true;
+
         IsCancelled = true;
     }
 
