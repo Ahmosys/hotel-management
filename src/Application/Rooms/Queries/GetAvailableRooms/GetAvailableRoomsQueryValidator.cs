@@ -5,11 +5,10 @@ public class GetAvailableRoomsQueryValidator : AbstractValidator<GetAvailableRoo
     public GetAvailableRoomsQueryValidator()
     {
         RuleFor(x => x.StartDate)
-            .NotEmpty()
-            .WithMessage("StartDate is required.");
+            .NotEmpty().WithMessage("StartDate is required.");
 
         RuleFor(x => x.EndDate)
-            .NotEmpty()
-            .WithMessage("EndDate is required.");
+            .NotEmpty().WithMessage("EndDate is required.")
+            .GreaterThan(x => x.StartDate).WithMessage("EndDate must be greater than StartDate.");
     }
 }

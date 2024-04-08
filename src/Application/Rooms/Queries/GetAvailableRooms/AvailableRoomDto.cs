@@ -1,10 +1,10 @@
 ﻿using HotelManagement.Domain.Entities;
 using HotelManagement.Domain.Enums;
 
-namespace HotelManagement.Application.TodoLists.Queries.GetTodos;
+namespace HotelManagement.Application.Rooms.Queries.GetAvailableRooms;
 
-public class AvailableRoomDto {
-
+public class AvailableRoomDto
+{
     public int Id { get; init; }
 
     public int Capacity { get; init; }

@@ -19,7 +19,6 @@ public class CustomExceptionHandler : IExceptionHandler
                 { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
                 { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
                 { typeof(DomainException), HandleDomainException },
-                { typeof(Exception), HandleGeneralException }
             };
     }
 
@@ -30,10 +29,14 @@ public class CustomExceptionHandler : IExceptionHandler
         if (_exceptionHandlers.ContainsKey(exceptionType))
         {
             await _exceptionHandlers[exceptionType].Invoke(httpContext, exception);
-            return true;
-        }
 
-        return false;
+        }
+        else
+        {
+            // If the exception is not known, handle it as a general exception (500).
+            await HandleGeneralException(httpContext, exception);
+        }
+        return true;
     }
 
     private async Task HandleValidationException(HttpContext httpContext, Exception ex)
@@ -59,7 +62,7 @@ public class CustomExceptionHandler : IExceptionHandler
         {
             Status = StatusCodes.Status404NotFound,
             Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
-            Title = "The request was not found.",
+            Title = "The requested resource was not found.",
             Detail = exception.Message
         });
     }
@@ -83,7 +86,7 @@ public class CustomExceptionHandler : IExceptionHandler
         await httpContext.Response.WriteAsJsonAsync(new ProblemDetails
         {
             Status = StatusCodes.Status403Forbidden,
-            Title = "Forbidden",
+            Title = "You are not allowed to access this resource.",
             Type = "https://tools.ietf.org/html/rfc7231#section-6.5.3"
         });
     }
@@ -97,7 +100,7 @@ public class CustomExceptionHandler : IExceptionHandler
         await httpContext.Response.WriteAsJsonAsync(new ProblemDetails
         {
             Status = StatusCodes.Status400BadRequest,
-            Title = "Bad Request",
+            Title = "The request was not valid.",
             Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
             Detail = exception.Message
         });
@@ -110,8 +113,9 @@ public class CustomExceptionHandler : IExceptionHandler
         await httpContext.Response.WriteAsJsonAsync(new ProblemDetails
         {
             Status = StatusCodes.Status500InternalServerError,
-            Title = "Internal Server Error",
-            Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1"
+            Title = "Oops! Our server is currently on a coffee break. Please try again later or contact support if the issue persists.",
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1",
+            Detail = ex.Message
         });
     }
 }

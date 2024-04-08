@@ -1,5 +1,5 @@
 ﻿using HotelManagement.Application.Rooms.Queries.GetAvailableRooms;
-using HotelManagement.Application.TodoLists.Queries.GetTodos;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HotelManagement.Web.Endpoints;
 
@@ -9,7 +9,7 @@ public class Rooms : EndpointGroupBase
     {
         app.MapGroup(this)
             .RequireAuthorization()
-            .MapGet(GetAvailableRooms);
+            .MapGet(GetAvailableRooms, "available/");
     }
 
     public Task<List<AvailableRoomDto>> GetAvailableRooms(ISender sender, [AsParameters] GetAvailableRoomsQuery query)

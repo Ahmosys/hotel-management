@@ -1,5 +1,4 @@
 ﻿using HotelManagement.Application.Common.Security;
-using HotelManagement.Application.TodoLists.Queries.GetTodos;
 using HotelManagement.Domain.Constants;
 using HotelManagement.Domain.Repository;
 
@@ -25,8 +24,7 @@ public class GetAvailableRoomsQueryHandler : IRequestHandler<GetAvailableRoomsQu
 
     public async Task<List<AvailableRoomDto>> Handle(GetAvailableRoomsQuery request, CancellationToken cancellationToken)
     {
-        var rooms = await _roomRepository.GetAvailableRoomsAsync(request.StartDate, request.EndDate, cancellationToken);
-        var availableRooms = _mapper.Map<List<AvailableRoomDto>>(rooms);
-        return availableRooms;
+        var availableRooms = await _roomRepository.GetAvailableRoomsAsync(request.StartDate, request.EndDate, cancellationToken);
+        return _mapper.Map<List<AvailableRoomDto>>(availableRooms);
     }
 }
