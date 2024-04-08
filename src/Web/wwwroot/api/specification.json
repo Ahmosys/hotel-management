@@ -56,6 +56,76 @@
         ]
       }
     },
+    "/api/rooms/to-clean": {
+      "get": {
+        "tags": [
+          "Rooms"
+        ],
+        "operationId": "GetRoomsToClean",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoomToCleanDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/rooms/{id}/clean": {
+      "put": {
+        "tags": [
+          "Rooms"
+        ],
+        "operationId": "MarkRoomAsClean",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkRoomAsCleanCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/todoitems": {
       "get": {
         "tags": [
@@ -841,6 +911,61 @@
           1,
           2
         ]
+      },
+      "RoomToCleanDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rate": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "type": {
+            "$ref": "#/components/schemas/RoomType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RoomStatus"
+          },
+          "isClean": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RoomStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "New",
+          "Renovated",
+          "NeedsRenovation",
+          "NoIssue",
+          "Damaged"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "MarkRoomAsCleanCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
       },
       "PaginatedListOfTodoItemBriefDto": {
         "type": "object",

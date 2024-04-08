@@ -25,6 +25,14 @@ internal sealed class RoomRepository : IRoomRepository
         return roomsAvailable;
     }
 
+    public async Task<Room?> GetRoomByIdAsync(int id)
+    {
+        var room = await _dbContext.Rooms
+            .Include(r => r.Bookings)
+            .FirstOrDefaultAsync(r => r.Id == id);
+
+        return room;
+    }
 
     public async Task<List<Room>> GetRoomsAsync(CancellationToken cancellationToken = default)
     {
@@ -34,6 +42,20 @@ internal sealed class RoomRepository : IRoomRepository
             .ToListAsync(cancellationToken);
 
         return roomsWithBookings;
+    }
+
+    public Task<List<Room>> GetRoomsToCleanAsync(CancellationToken cancellationToken = default)
+    {
+        var roomsToClean = _dbContext.Rooms
+            .Where(r => r.IsClean == false)
+            .ToListAsync(cancellationToken);
+
+        return roomsToClean;
+    }
+
+    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }
 
