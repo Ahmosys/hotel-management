@@ -1,8 +1,8 @@
-﻿namespace HotelManagement.Application.Rooms.Queries.GetAvailableRooms;
+﻿namespace HotelManagement.Application.Rooms.Queries.GetAvailableRoomsReceptionist;
 
-public class GetAvailableRoomsQueryValidator : AbstractValidator<GetAvailableRoomsQuery>
+public class GetAvailableRoomsReceptionistQueryValidator : AbstractValidator<GetAvailableRoomsReceptionistQuery>
 {
-    public GetAvailableRoomsQueryValidator()
+    public GetAvailableRoomsReceptionistQueryValidator()
     {
         RuleFor(x => x.StartDate)
             .NotEmpty().WithMessage("StartDate is required.");

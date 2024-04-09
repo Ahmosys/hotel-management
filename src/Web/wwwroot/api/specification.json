@@ -78,12 +78,12 @@
         ]
       }
     },
-    "/api/rooms/available": {
+    "/api/rooms/available/customer": {
       "get": {
         "tags": [
           "Rooms"
         ],
-        "operationId": "GetAvailableRooms",
+        "operationId": "GetAvailableRoomsCustomer",
         "parameters": [
           {
             "name": "StartDate",
@@ -114,7 +114,57 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AvailableRoomDto"
+                    "$ref": "#/components/schemas/AvailableRoomCustomerDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/rooms/available/receptionist": {
+      "get": {
+        "tags": [
+          "Rooms"
+        ],
+        "operationId": "GetAvailableRoomsReceptionist",
+        "parameters": [
+          {
+            "name": "StartDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AvailableRoomReceptionistDto"
                   }
                 }
               }
@@ -984,7 +1034,7 @@
           }
         }
       },
-      "AvailableRoomDto": {
+      "AvailableRoomCustomerDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -1019,6 +1069,48 @@
           2
         ]
       },
+      "AvailableRoomReceptionistDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rate": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "type": {
+            "$ref": "#/components/schemas/RoomType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RoomStatus"
+          }
+        }
+      },
+      "RoomStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "New",
+          "Renovated",
+          "NeedsRenovation",
+          "NoIssue",
+          "Damaged"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "RoomToCleanDto": {
         "type": "object",
         "additionalProperties": false,
@@ -1045,24 +1137,6 @@
             "type": "boolean"
           }
         }
-      },
-      "RoomStatus": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "New",
-          "Renovated",
-          "NeedsRenovation",
-          "NoIssue",
-          "Damaged"
-        ],
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
       },
       "MarkRoomAsCleanCommand": {
         "type": "object",

@@ -1,9 +1,9 @@
 ﻿using HotelManagement.Domain.Entities;
 using HotelManagement.Domain.Enums;
 
-namespace HotelManagement.Application.Rooms.Queries.GetAvailableRooms;
+namespace HotelManagement.Application.Rooms.Queries.GetAvailableRoomsCustomer;
 
-public class AvailableRoomDto
+public class AvailableRoomCustomerDto
 {
     public int Id { get; init; }
 
@@ -15,11 +15,9 @@ public class AvailableRoomDto
 
     private class Mapping : Profile
     {
-        // We don't want to expose the entire Room entity to the customer
-        // We only want to expose the properties that are relevant to the customer
         public Mapping()
         {
-            CreateMap<Room, AvailableRoomDto>();
+            CreateMap<Room, AvailableRoomCustomerDto>();
         }
     }
 }

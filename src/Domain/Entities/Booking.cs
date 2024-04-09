@@ -2,7 +2,6 @@ namespace HotelManagement.Domain.Entities;
 
 public class Booking : BaseAuditableEntity
 {
-
     #region Properties
 
     public DateTimeOffset StartDate { get; private set; }
