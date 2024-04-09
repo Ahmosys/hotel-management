@@ -111,5 +111,33 @@ public class Booking : BaseAuditableEntity
         IsCancelled = true;
     }
 
+    /// <summary>
+    /// Check in a booking and mark the room as unavailable.
+    /// </summary>
+    public void CheckIn()
+    {
+        if (IsCancelled)
+            throw new DomainException("Booking is cancelled.");
+
+        if (!IsPaid)
+            throw new DomainException("Booking must be paid to be checked in.");
+
+        Room.MarkAsUnavailable();
+    }
+
+    /// <summary>
+    /// Check out a booking and mark the room as dirty (be cleaned).
+    /// </summary>
+    public void CheckOut()
+    {
+        if (IsCancelled)
+            throw new DomainException("Booking is cancelled.");
+
+        if (!IsPaid)
+            throw new DomainException("Booking must be paid to be checked out.");
+
+        Room.MarkAsDirty();
+    }
+
     #endregion
 }
