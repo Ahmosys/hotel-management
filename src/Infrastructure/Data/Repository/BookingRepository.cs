@@ -1,5 +1,6 @@
 ﻿using HotelManagement.Domain.Entities;
 using HotelManagement.Domain.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Infrastructure.Data.Repository;
 
@@ -10,6 +11,14 @@ internal sealed class BookingRepository : IBookingRepository
     public BookingRepository(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
+    }
+
+    public async Task<Booking?> GetBookingByIdAsync(int id, CancellationToken cancellationToken = default)
+    {
+        var booking = await _dbContext.Bookings
+            .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
+
+        return booking;
     }
 
     public async Task<Booking> InsertBookingAsync(Booking booking, CancellationToken cancellationToken = default)

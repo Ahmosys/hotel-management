@@ -28,7 +28,7 @@ internal sealed class RoomRepository : IRoomRepository
     {
         var room = await _dbContext.Rooms
             .Include(r => r.Bookings)
-            .FirstOrDefaultAsync(r => r.Id == id);
+            .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
 
         return room;
     }

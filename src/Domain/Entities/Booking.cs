@@ -60,7 +60,7 @@ public class Booking : BaseAuditableEntity
     /// </summary>
     public bool IsRefundable()
     {
-        return StartDate.Subtract(DateTime.Now).TotalHours <= 48;
+        return StartDate.Subtract(DateTime.Now).TotalHours >= 48;
     }
 
     /// <summary>

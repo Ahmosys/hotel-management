@@ -3,7 +3,7 @@ using HotelManagement.Domain.Repository;
 
 namespace HotelManagement.Application.Bookings.Commands.CreateBooking;
 
-public record CreateBookingCommand : IRequest<Booking>
+public record CreateBookingCommand : IRequest<int>
 {
     public int RoomId { get; init; }
     public DateTimeOffset StartDate { get; init; }
@@ -11,7 +11,7 @@ public record CreateBookingCommand : IRequest<Booking>
     public bool PayDirectly { get; init; }
 }
 
-public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand, Booking>
+public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand, int>
 {
     private readonly IBookingRepository _bookingRepository;
     private readonly IRoomRepository _roomRepository;
@@ -25,7 +25,7 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
         _roomRepository = roomRepository;
     }
 
-    public async Task<Booking> Handle(CreateBookingCommand request, CancellationToken cancellationToken)
+    public async Task<int> Handle(CreateBookingCommand request, CancellationToken cancellationToken)
     {
         var room = await _roomRepository.GetRoomByIdAsync(request.RoomId, cancellationToken);
 
@@ -35,14 +35,15 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
 
         // TODO: If the booking is paid directly, process payment from payment gateway via Pay() method in Booking entity
         if (request.PayDirectly)
-        {
             // booking.Pay();
-        }
 
         await _bookingRepository.InsertBookingAsync(booking, cancellationToken);
 
         await _bookingRepository.SaveChangesAsync(cancellationToken);
 
-        return booking;
+        // TODO: Not sure if we should return the booking ID or the booking itself but
+        // for now, we will return the booking ID bcz it's define like this in RFC
+        // (https://www.rfc-editor.org/rfc/rfc7231#section-4.3.3)
+        return booking.Id;
     }
 }

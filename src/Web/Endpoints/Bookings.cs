@@ -1,4 +1,6 @@
-﻿using HotelManagement.Application.Bookings.Commands.CreateBooking;
+﻿using HotelManagement.Application.Bookings.Commands.CancelBooking;
+using HotelManagement.Application.Bookings.Commands.CreateBooking;
+using HotelManagement.Application.Rooms.Commands.MarkRoomAsClean;
 using HotelManagement.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,11 +12,20 @@ public class Bookings : EndpointGroupBase
     {
         app.MapGroup(this)
             .RequireAuthorization()
-            .MapPost(CreateBooking);
+            .MapPost(CreateBooking)
+            .MapPut(CancelBooking, "{id}/cancel");
     }
 
-    public async Task<Booking> CreateBooking(ISender sender, [FromBody] CreateBookingCommand command)
+    public async Task<IResult> CreateBooking(ISender sender, [FromBody] CreateBookingCommand command)
     {
-        return await sender.Send(command);
+        int bookingId = await sender.Send(command);
+        return Results.Created($"/bookings/{bookingId}", bookingId);
+    }
+
+    public async Task<IResult> CancelBooking(ISender sender, int id, CancelBookingCommand command)
+    {
+        if (id != command.Id) return Results.BadRequest();
+        await sender.Send(command);
+        return Results.NoContent();
     }
 }
