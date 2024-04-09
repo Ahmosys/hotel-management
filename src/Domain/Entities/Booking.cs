@@ -137,6 +137,9 @@ public class Booking : BaseAuditableEntity
             throw new DomainException("Booking must be paid to be checked out.");
 
         Room.MarkAsDirty();
+
+        // Add a domain event to notify the customer by e-mail for feedback
+        AddDomainEvent(new BookingCheckedOutEvent(this));
     }
 
     #endregion
