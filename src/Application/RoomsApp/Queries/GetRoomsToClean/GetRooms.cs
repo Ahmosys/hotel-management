@@ -14,9 +14,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Application.RoomsApp.Queries.GetRooms;
 [Authorize]
-public record GetRoomsToCleanQuery : IRequest<RoomsVm>;
+public record GetRoomsQuery : IRequest<RoomsToCleanVm>;
 
-public class GetRoomsQueryHandler : IRequestHandler<GetRoomsToCleanQuery, RoomsVm>
+public class GetRoomsToCleanQueryHandler : IRequestHandler<GetRoomsQuery, RoomsToCleanVm>
 {
     private readonly IRoomRepository _roomRepository;
 
@@ -27,10 +27,12 @@ public class GetRoomsQueryHandler : IRequestHandler<GetRoomsToCleanQuery, RoomsV
         _roomRepository = roomRepository;
     }
 
-    public async Task<RoomsVm> Handle(GetRoomsQuery request, CancellationToken cancellationToken)
+    public async Task<RoomsToCleanVm> Handle(GetRoomsQuery request, CancellationToken cancellationToken)
     {
 
-        var rooms = await _roomRepository.GetRoomsAsync(cancellationToken);
+        var rooms = await _roomRepository.GetRoomsToCleanAsync().Where(room => !room.IsClean)
+        .ToListAsync(cancellationToken);
+
 
         // Mapper les entités Room vers les DTO RoomListDto
         var roomDtos = rooms.Select(RoomMapper.MapToRoomListDto).ToList();

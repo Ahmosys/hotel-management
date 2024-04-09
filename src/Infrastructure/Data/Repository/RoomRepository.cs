@@ -19,5 +19,12 @@ internal sealed class RoomRepository : IRoomRepository
     {
         return await _dbContext.Rooms.ToListAsync();
     }
+
+    public async Task<List<Room>> GetRoomsToCleanAsync(CancellationToken cancellationToken)
+    {
+        return await _dbContext.Rooms
+         .Where(room => !room.IsClean)
+         .ToListAsync(cancellationToken);
+    }
 }
 

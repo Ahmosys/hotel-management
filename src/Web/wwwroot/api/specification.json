@@ -825,26 +825,6 @@
           "rate": {
             "type": "number",
             "format": "decimal"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RoomItemDto"
-            }
-          }
-        }
-      },
-      "RoomItemDto": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "capacity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "rate": {
-            "type": "number",
-            "format": "decimal"
           }
         }
       },

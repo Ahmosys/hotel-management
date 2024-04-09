@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Bookings\" />
-    <Folder Include="Rooms\" />
   </ItemGroup>
 
 </Project>
