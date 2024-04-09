@@ -6,7 +6,7 @@ using HotelManagement.Domain.Repository;
 
 namespace HotelManagement.Application.Bookings.Commands.CancelBooking;
 
-[Authorize(Roles = Roles.Customer + ", " + Roles.Receptionist)]
+[Authorize(Roles = $"{Roles.Customer},{Roles.Receptionist}")]
 public record CancelBookingCommand : IRequest
 {
     public int Id { get; init; }
@@ -39,6 +39,7 @@ public class CancelBookingCommandHandler : IRequestHandler<CancelBookingCommand>
         // If the user is a customer, they can only cancel their own bookings and cannot refund them after 48 hours
         if (await _identityService.IsInRoleAsync(_user.Id!, Roles.Customer))
         {
+            // Check if the booking was created by the user trying to cancel it
             if (booking.CreatedBy != _user.Id)
                 throw new ForbiddenAccessException();
 
