@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace HotelManagement.Application.Bookings.Commands.CancelBooking;
 
-namespace HotelManagement.Application.Bookings.Commands.CancelBooking;
-internal class CancelBookingCommandValidator
+public class CancelBookingCommandValidator : AbstractValidator<CancelBookingCommand>
 {
+    public CancelBookingCommandValidator()
+    {
+        RuleFor(x => x.Id)
+            .NotEmpty().WithMessage("Id is required.");
+    }
 }
