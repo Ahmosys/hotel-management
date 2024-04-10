@@ -13,12 +13,10 @@ public record CheckOutBookingCommand : IRequest
 public class CheckOutCommandHandler : IRequestHandler<CheckOutBookingCommand>
 {
     private readonly IBookingRepository _bookingRepository;
-    private readonly IRoomRepository _roomRepository;
 
-    public CheckOutCommandHandler(IBookingRepository bookingRepository, IRoomRepository roomRepository)
+    public CheckOutCommandHandler(IBookingRepository bookingRepository)
     {
         _bookingRepository = bookingRepository;
-        _roomRepository = roomRepository;
     }
 
     public async Task Handle(CheckOutBookingCommand request, CancellationToken cancellationToken)
