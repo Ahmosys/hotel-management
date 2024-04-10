@@ -18,7 +18,7 @@ public class PreStayNotificationJobSetup : IConfigureOptions<QuartzOptions>
         options.AddTrigger(trigger =>
         {
             trigger
-                .WithCronSchedule("0 8 * * *")
+                .WithCronSchedule("0 0 8 * * ?")
                 .ForJob(jobKey);
         });
     }
