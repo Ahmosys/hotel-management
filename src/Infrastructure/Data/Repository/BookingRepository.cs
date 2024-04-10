@@ -16,6 +16,7 @@ internal sealed class BookingRepository : IBookingRepository
     public async Task<Booking?> GetBookingByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         var booking = await _dbContext.Bookings
+            .Include(b => b.Room)
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 
         return booking;

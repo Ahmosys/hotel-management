@@ -69,7 +69,6 @@ public class Room : BaseAuditableEntity
     /// </summary>
     public bool IsAvailableFor(DateTimeOffset startDate, DateTimeOffset endDate)
     {
-        // TODO: Need to activate eadger loading otherwise it will not load all the bookings
         return !Bookings.Any(booking =>
                 (startDate >= booking.StartDate && startDate <= booking.EndDate) ||
                 (endDate >= booking.StartDate && endDate <= booking.EndDate));
