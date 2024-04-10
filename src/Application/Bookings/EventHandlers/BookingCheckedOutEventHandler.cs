@@ -25,10 +25,13 @@ public class BookingCheckedOutEventHandler : INotificationHandler<BookingChecked
     {
         _logger.LogInformation("HotelManagement Domain Event: {DomainEvent}", notification.GetType().Name);
 
-        // Retrive the user e-mail
+        // Retrieve the user e-mail
         var userEmail = await _identityService.GetUserEmailAsync(notification.Booking.CreatedBy!);
 
-        // Send an e-mail to the user
-        await _emailService.SendEmailAsync(userEmail!, "admin@localhost", "Please rate your stay!", "Lorem ipsum elmet");
+        if (userEmail != null)
+        {
+            // Send an e-mail to the user
+            await _emailService.SendEmailAsync(userEmail, "admin@localhost", "Please rate your stay!", "Lorem ipsum elmet");
+        }
     }
 }

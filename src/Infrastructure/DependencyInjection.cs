@@ -5,11 +5,13 @@ using HotelManagement.Infrastructure.Data;
 using HotelManagement.Infrastructure.Data.Interceptors;
 using HotelManagement.Infrastructure.Data.Repository;
 using HotelManagement.Infrastructure.Identity;
+using HotelManagement.Infrastructure.Jobs;
 using HotelManagement.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
+using Quartz;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -55,6 +57,15 @@ public static class DependencyInjection
         services.AddAuthorization(options =>
             options.AddPolicy(Policies.CanPurge, policy => policy.RequireRole(Roles.Administrator)));
 
+        services.AddQuartz();
+
+        services.AddQuartzHostedService(options =>
+        {
+            // When shutting down we want jobs to complete gracefully
+            options.WaitForJobsToComplete = true;
+        });
+
+        services.ConfigureOptions<PreStayNotificationJobSetup>();
 
 
         return services;

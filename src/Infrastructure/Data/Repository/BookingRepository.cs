@@ -22,6 +22,17 @@ internal sealed class BookingRepository : IBookingRepository
         return booking;
     }
 
+    public async Task<List<Booking>?> GetBookingsStartingTommorowAsync(CancellationToken cancellationToken = default)
+    {
+        var tommorow = DateTimeOffset.UtcNow.AddDays(1).Date;
+
+        var bookings = await _dbContext.Bookings
+            .Where(b => b.StartDate.Date == tommorow && !b.IsCancelled)
+            .ToListAsync(cancellationToken);
+
+        return bookings;
+    }
+
     public async Task<Booking> InsertBookingAsync(Booking booking, CancellationToken cancellationToken = default)
     {
         _dbContext.Bookings.Add(booking);
