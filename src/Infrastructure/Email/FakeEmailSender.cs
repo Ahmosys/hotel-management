@@ -13,7 +13,7 @@ public class FakeEmailSender : IEmailService
 
     public Task SendEmailAsync(string to, string from, string subject, string body)
     {
-        _logger.LogInformation($"HotelManagement FakeEmailSender Service: Sending email to {to} from {from} with subject {subject} and body {body}");
+        _logger.LogInformation($"HotelManagement Service: Sending email to {to} from {from} with subject {subject} and body {body}");
         return Task.CompletedTask;
     }
 }

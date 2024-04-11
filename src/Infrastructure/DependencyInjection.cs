@@ -6,6 +6,7 @@ using HotelManagement.Infrastructure.Data.Interceptors;
 using HotelManagement.Infrastructure.Data.Repository;
 using HotelManagement.Infrastructure.Identity;
 using HotelManagement.Infrastructure.Jobs;
+using HotelManagement.Infrastructure.Payment;
 using HotelManagement.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +54,7 @@ public static class DependencyInjection
         services.AddSingleton(TimeProvider.System);
         services.AddTransient<IIdentityService, IdentityService>();
         services.AddTransient<IEmailService, FakeEmailSender>();
+        services.AddTransient<IPaymentGateway, StripePaymentGateway>();
 
         services.AddAuthorization(options =>
             options.AddPolicy(Policies.CanPurge, policy => policy.RequireRole(Roles.Administrator)));

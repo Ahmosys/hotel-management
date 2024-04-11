@@ -71,9 +71,18 @@ public class Booking : BaseAuditableEntity
             throw new DomainException("Booking is already paid.");
 
         // TODO: Call here the fake payment gateway OR deplace the logic in specific domain service
-
+         
         // Mark the booking as paid
         IsPaid = true;
+    }
+
+    /// <summary>
+    /// Calculate the total amount of the booking
+    /// </summary>
+    /// <returns></returns>
+    public decimal CalculateTotalAmount()
+    {
+        return Room.Rate * EndDate.Subtract(StartDate).Days;
     }
 
     /// <summary>

@@ -16,5 +16,13 @@ public class CreateBookingCommandValidator : AbstractValidator<CreateBookingComm
 
         /* RuleFor(x => x.PayDirectly)
             .NotEmpty().WithMessage("PayDirectly is required."); */
+
+        RuleFor(x => x.CardNumber)
+            .NotEmpty().WithMessage("CardNumber is required.")
+            .When(x => x.PayDirectly);
+
+        RuleFor(x => x.ExpiryDate)
+            .NotEmpty().WithMessage("ExpiryDate is required.")
+            .When(x => x.PayDirectly);
     }
 }

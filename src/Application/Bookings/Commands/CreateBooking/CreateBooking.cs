@@ -1,4 +1,6 @@
-﻿using HotelManagement.Domain.Entities;
+﻿using HotelManagement.Application.Common.Interfaces;
+using HotelManagement.Application.Common.Models;
+using HotelManagement.Domain.Entities;
 using HotelManagement.Domain.Repository;
 
 namespace HotelManagement.Application.Bookings.Commands.CreateBooking;
@@ -9,20 +11,25 @@ public record CreateBookingCommand : IRequest<int>
     public DateTimeOffset StartDate { get; init; }
     public DateTimeOffset EndDate { get; init; }
     public bool PayDirectly { get; init; }
+    public string? CardNumber { get; init; }
+    public string? ExpiryDate { get; init; }
 }
 
 public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand, int>
 {
     private readonly IBookingRepository _bookingRepository;
     private readonly IRoomRepository _roomRepository;
+    private readonly IPaymentGateway _paymentGateway;
 
     public CreateBookingCommandHandler(
         IBookingRepository bookingRepository,
-        IRoomRepository roomRepository
+        IRoomRepository roomRepository,
+        IPaymentGateway paymentGateway
     )
     {
         _bookingRepository = bookingRepository;
         _roomRepository = roomRepository;
+        _paymentGateway = paymentGateway;
     }
 
     public async Task<int> Handle(CreateBookingCommand request, CancellationToken cancellationToken)
@@ -33,12 +40,24 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
 
         var booking = Booking.Create(request.StartDate, request.EndDate, room);
 
-        // TODO: If the booking is paid directly, process payment from payment gateway via Pay() method in Booking entity
         if (request.PayDirectly)
-            // booking.Pay();
+        {
+            var paymentInfo = new PaymentInfo
+            {
+                CardNumber = request.CardNumber,
+                ExpiryDate = request.ExpiryDate,
+                Amount = booking.CalculateTotalAmount().ToString()
+            };
+
+            bool paymentSuccess = await _paymentGateway.ProcessPaymentAsync(paymentInfo);
+
+            if (!paymentSuccess)
+                throw new Exception("Payment failed.");
+
+            booking.Pay();
+        }
 
         await _bookingRepository.InsertBookingAsync(booking, cancellationToken);
-
         await _bookingRepository.SaveChangesAsync(cancellationToken);
 
         // Not sure if we should return the booking ID or the booking itself but
