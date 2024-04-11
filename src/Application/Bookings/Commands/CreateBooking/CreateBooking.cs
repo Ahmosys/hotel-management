@@ -62,7 +62,7 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
 
         // Not sure if we should return the booking ID or the booking itself but
         // for now, we will return the booking ID bcz it's define like this in RFC
-        // (https://www.rfc-editor.org/rfc/rfc7231#section-4.3.3)
+        // See: https://www.rfc-editor.org/rfc/rfc7231#section-4.3.3
         return booking.Id;
     }
 }

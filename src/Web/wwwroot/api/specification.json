@@ -1073,6 +1073,14 @@
           },
           "payDirectly": {
             "type": "boolean"
+          },
+          "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiryDate": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
