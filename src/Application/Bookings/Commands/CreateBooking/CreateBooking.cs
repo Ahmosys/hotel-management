@@ -34,12 +34,16 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
 
     public async Task<int> Handle(CreateBookingCommand request, CancellationToken cancellationToken)
     {
+        // Here I'll find a SHUUUU room for Billy, Billy needs to be able to do his business
         var room = await _roomRepository.GetRoomByIdAsync(request.RoomId, cancellationToken);
 
+        // Damn, the room Billy wanted to book doesn't exist
         Guard.Against.NotFound(request.RoomId, room);
 
+        // OK, this time the room he has chosen exists, we can go on and book it.
         var booking = Booking.Create(request.StartDate, request.EndDate, room);
 
+        // Gosh, billy's got so much money he wants to pay directly in cash
         if (request.PayDirectly)
         {
             var paymentInfo = new PaymentInfo
