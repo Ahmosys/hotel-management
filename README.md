@@ -169,6 +169,13 @@ dotnet run
 ⚠️ NB : If you want to use another database, you can change the connection string in the `appsettings.json` file in the `src/Web` directory.
 
 
+## 🔍 Hindsight and areas for improvement
+- **Logging**: Implement a more robust logging system to track application events and errors (Serilog).
+
+- **Testing**: Increase test coverage by adding more unit tests, integration tests, and end-to-end tests.
+
+- **Result Pattern**: Implement a result pattern to handle errors and responses in a more consistent and structured way.
+
 ## 📝 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
