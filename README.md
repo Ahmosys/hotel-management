@@ -100,6 +100,11 @@ Routes for **Receptionist** role :
 - **PUT /api/bookings/{bookingId}/check-out** : Check-out a booking so the room need to be cleaned.
 - **PUT /api/bookings/{bookingId}/cancel** : Cancel a booking and refund the customer if he wants to, no rules apply for the receptionist.
 
+## 📖 API Documentation
+The API documentation is generated using NSwag and can be accessed at `https://localhost:5001/api/index.html`. It provides detailed information about the available endpoints, request/response models, and authentication requirements.
+
+In addition, we have also implement Postman collection for testing the API endpoints. You can find the collection in the `postman` folder and import it into Postman to test the API endpoints.
+
 ## 🔒 Security
 The application uses JWT (JSON Web Token) for authentication and authorization. The JWT token is generated when a user logs in and is used to authenticate subsequent requests. The token contains the user's claims and is validated on each request to ensure that the user has the necessary permissions to access the requested resource.
 
