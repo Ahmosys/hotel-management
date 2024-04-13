@@ -73,6 +73,10 @@ Here is a UML diagram of the business-side database schema:
 
 // Put the UML diagram here
 
+Here is a ERD diagram of the database schema:
+
+<img src="https://i.ibb.co/dB7SNqt/erd-diagram-v1.png" />
+
 ### Database Migrations
 The database schema is managed using Entity Framework Core's migration feature, which allows us to create, update, and rollback database schema changes. The migrations are stored in the `src/Infrastructure/Data/Migrations` directory. At the start of the application, the database is automatically migrated to the latest version.
 
