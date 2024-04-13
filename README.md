@@ -50,8 +50,8 @@ The "Fail Fast" strategy is adopted to detect and report errors as soon as they 
 ### Mediator
 The Mediator pattern is used to decouple the components of the application, allowing them to communicate without being directly dependent on each other.
 
-### Static factory method pattern
-The static factory method pattern is employed to create instances of objects, furnishing a neat and uniform approach for object creation. You can observe the implementation of the static factory method pattern in the `src/Domain/Entities/Room.cs` file for instance. This file encapsulates all properties of a room object, and the static factory method `Create()` is utilized to instantiate room objects with consistent behavior and configuration. This approach not only simplifies the process of creating room objects but also ensures adherence to design principles such as encapsulation and separation of concerns.
+### Static Factory Method
+The static factory method pattern is employed to create instances of objects, furnishing a neat and uniform approach for object creation. You can observe the implementation of the static factory method pattern in the `src/Domain/Entities/Room.cs` file for instance. This file encapsulates all properties of a room object, and the static factory method `Create()` is utilized to instantiate room objects with consistent behavior and configuration. This approach not only simplifies the process of creating objects but also ensures adherence to design principles such as encapsulation and separation of concerns.
 
 ## 📚 Structure
 The application is structured following the principles of Clean Architecture, which consists of four layers: Presentation (Web API), Application, Domain, and Infrastructure.
