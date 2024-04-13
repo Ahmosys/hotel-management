@@ -45,17 +45,6 @@ The "Fail Fast" strategy is adopted to detect and report errors as soon as they 
 ### Mediator
 The Mediator pattern is used to decouple the components of the application, allowing them to communicate without being directly dependent on each other.
 
-## 🗄️Database
-The application utilizes a relational database, specifically Microsoft SQL Server LocalDB (for dev env), for storing data related to users, roles, bookings, rooms, etc. Entity Framework Core is utilized for data persistence management, providing an effective database abstraction.
-
-### Database Schema
-Here is a UML diagram of the business-side database schema:
-
-// Put the UML diagram here
-
-### Database Seeding
-The database is seeded with initial data to facilitate testing and development. The seeding process is performed when running the application using Entity Framework Core's, which populates the database with predefined data. You can find the seeding data in the `src/Infrastructure/Data/ApplicationDbContextInitialiser.cs` file.
-
 ## 📚 Structure
 The application is structured following the principles of Clean Architecture, which consists of four layers: Presentation (Web API), Application, Domain, and Infrastructure.
 
@@ -70,6 +59,18 @@ The Domain layer contains the core business entities, value objects, and domain 
 
 ### Infrastructure
 The Infrastructure layer contains the implementation details, such as data access, external services such as email service and payment, and other infrastructure-related concerns. It is responsible for interacting with external systems and providing the necessary infrastructure for the application to run.
+
+## 🗄️Database
+The application utilizes a relational database, specifically Microsoft SQL Server LocalDB (for dev env), for storing data related to users, roles, bookings, rooms, etc. Entity Framework Core is utilized for data persistence management, providing an effective database abstraction.
+
+### Database Schema
+Here is a UML diagram of the business-side database schema:
+
+// Put the UML diagram here
+
+### Database Seeding
+The database is seeded with initial data to facilitate testing and development. The seeding process is performed when running the application using Entity Framework Core's, which populates the database with predefined data. You can find the seeding data in the `src/Infrastructure/Data/ApplicationDbContextInitialiser.cs` file.
+
 
 ## 🚦 API Endpoints
 
@@ -103,6 +104,8 @@ Routes for **Receptionist** role :
 The application uses JWT (JSON Web Token) for authentication and authorization. The JWT token is generated when a user logs in and is used to authenticate subsequent requests. The token contains the user's claims and is validated on each request to ensure that the user has the necessary permissions to access the requested resource.
 
 The application uses **role-based** authorization to control access to different parts of the application. There are three roles defined in the application: Customer, Cleaner, and Receptionist. Each role has specific permissions and access rights to different parts of the application.
+
+## 🌐 External Services
 
 ## ⚙️ Installation
 
