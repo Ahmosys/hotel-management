@@ -128,7 +128,7 @@ The application uses **role-based** authorization to control access to different
 - **Process payment when customer book a room or check-in** : The application uses an external payment gateway to process payments when a customer books a room or checks in. You can find the usage of the payment gateway in the `src/Application/Bookings/Commands/CreateBookingCommandHandler.cs` and `src/Application/Bookings/Commands/CheckInBookingCommandHandler.cs` files. In the Infrastructure layer, we have implemented a simple Stripe payment gateway that logs the payment details to the console just for demonstration purposes.
 
 ## 🕒 Task Scheduling (Quartz.NET)
-The application uses Quartz.NET to schedule asynchronous tasks such as sending reminder emails to customers.
+The application uses Quartz.NET to schedule asynchronous tasks such as sending reminder emails to users.
 
 - **Pre-stay notification to customers to inform them of the start of their stay (1 day before the start):** : The application uses Quartz.NET to schedule a task (called "Job") that sends reminder emails to customers who have upcoming bookings. You can find the Quartz.NET configuration in the `src/Infrastructure/Jobs/PreStayNotificationJobSetup.cs` file and the job implementation in the `src/Infrastructure/Jobs/PreStayNotificationJob.cs` file. The job is scheduled to run every day at 8:00 AM.
 
