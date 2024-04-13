@@ -79,9 +79,7 @@ The database schema is managed using Entity Framework Core's migration feature, 
 ### Database Seeding
 The database is seeded with initial data to facilitate testing and development. The seeding process is performed when running the application using Entity Framework Core's, which populates the database with predefined data. You can find the seeding data in the `src/Infrastructure/Data/ApplicationDbContextInitialiser.cs` file.
 
-
 ## 🚦 API Endpoints
-
 ### Users (Identity - ASP.NET Core)
 Routes for **all** roles :
 - **POST /api/users/login** : Authenticate a user and generate a JWT token.
@@ -111,7 +109,7 @@ Routes for **Receptionist** role :
 ## 📖 API Documentation
 The API documentation is generated using NSwag and can be accessed at `https://localhost:5001/api/index.html`. It provides detailed information about the available endpoints, request/response models, and authentication requirements.
 
-In addition, we have also implement Postman collection for testing the API endpoints. You can find the collection in the `postman` folder and import it into Postman to test the API endpoints.
+In addition, we have also implement Postman collection for testing the API endpoints. You can find the collection in the `.docs/postman` folder and import it into Postman to test the API endpoints.
 
 ## 🔒 Security
 The application uses JWT (JSON Web Token) for authentication and authorization. The JWT token is generated when a user logs in and is used to authenticate subsequent requests. The token contains the user's claims and is validated on each request to ensure that the user has the necessary permissions to access the requested resource.
@@ -119,7 +117,6 @@ The application uses JWT (JSON Web Token) for authentication and authorization. 
 The application uses **role-based** authorization to control access to different parts of the application. There are three roles defined in the application: Customer, Cleaner, and Receptionist. Each role has specific permissions and access rights to different parts of the application.
 
 ## 🌐 External Services
-
 ### Email Service (IEmailService)
 
 - **Send a e-mail when customer check-out** : The application uses an external email service to send an email to the user when they check-out. You can find the usage of the email service in the `src/Application/Bookings/EventHandlers/BookingCheckedOutEventHandler.cs` file. In the Infrastructure layer, we have implemented a simple email service that logs the email content to the console just for demonstration purposes.
@@ -128,8 +125,12 @@ The application uses **role-based** authorization to control access to different
 
 - **Process payment when customer book a room or check-in** : The application uses an external payment gateway to process payments when a customer books a room or checks in. You can find the usage of the payment gateway in the `src/Application/Bookings/Commands/CreateBookingCommandHandler.cs` and `src/Application/Bookings/Commands/CheckInBookingCommandHandler.cs` files. In the Infrastructure layer, we have implemented a simple Stripe payment gateway that logs the payment details to the console just for demonstration purposes.
 
-## ⚙️ Installation
+## 🕒 Task Scheduling (Quartz.NET)
+The application uses Quartz.NET to schedule asynchronous tasks such as sending reminder emails to customers.
 
+- **Send reminder emails to customers** : The application uses Quartz.NET to schedule a task that sends reminder emails to customers who have upcoming bookings. You can find the Quartz.NET configuration in the `src/Web/Startup.cs` file and the job implementation in the `src/Application/Bookings/ReminderJob.cs` file.
+
+## ⚙️ Installation
 ### Prerequisites
 - **.NET 8.0 SDK** : You need to have .NET 8.0 SDK installed on your machine to run the application.
 - **SQL Server LocalDB** : You need to have SQL Server LocalDB installed on your machine to run the application (Not mandatory, you can use another database if you want but by default the application is configured to use SQL Server LocalDB).
@@ -154,7 +155,7 @@ dotnet run
 
 4. Open your browser and navigate to `https://localhost:5001/api/index.html` to access the API documentation.
 
-5. You can also import the Postman collection from the `postman` folder to test the API endpoints.
+5. You can also import the Postman collection from the `.docs/postman` folder to test the API endpoints.
 
 ⚠️ NB : If you want to use another database, you can change the connection string in the `appsettings.json` file in the `src/Web` directory.
 

@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "a7c3e877-7a48-4aa2-a4f6-33c7430dcfc7",
+		"name": "🏨 HotelManagement API",
+		"description": "API Documentation for Hotel Management API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28601561",
+		"_collection_link": "https://warped-eclipse-175736.postman.co/workspace/hotel-management~ccef5e0e-dd91-46a0-8f1d-1c068d23fff8/collection/28601561-a7c3e877-7a48-4aa2-a4f6-33c7430dcfc7?action=share&source=collection_link&creator=28601561"
+	},
+	"item": [
+		{
+			"name": "Rooms",
+			"item": [
+				{
+					"name": "Customer",
+					"item": [
+						{
+							"name": "Get available rooms",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "CfDJ8IjtY9c42F1Lk3PyaFiDcHw-7gwKsncITzI9BzEK7hx4xQTtG23U54uSI0mF8UcM75EuEj92wotOnwfzs7z5eZYwfgwZyDuEZdomWZppjNWhImpD0B2oJJ1gYlvGmhbV7h3Q3oTRmgQUeFrFueZe57Ois4I17LztxLzE94Pwv_rwa_qsY3s_NDhHnKW9u5KYnwWrvhxZBY5SA-X_fl9m-WvOW-3ME8UMGgV3TEfEe18K27EivXBG0RrM3_gXLELVXDMQIeZ9GHuqFsTWGJU-7ax5E8XlMaOWqLm7K7HvGzYxhCe3SSEvRsTzPpacmM5-mhjVaKt1oWlmyza5NSTkfnkxdrOLzxerDyS8AXE_axUM_6CImhLU95PwTlJlR-xw5vTJ1AAUfsn8i6mN-sEk_yNLvrvnhKfboGIdn41RKq_4xxsVhLhcZkJzcv0CBsiUs5rK546bFUxrAT1V6q_HBrhnxYGgp2aruY2YexlhkvvP092ANgi8Iizd2c5fer5shHCtgKNOagfq1MH7sfuGh9Mk-Pb5cwqxcfrevPBdkXggc6MAr2MG-B526WTGFCk-8uBs48OWV52IjXWRyCC2C9MJHfVzRv6TKUR2wJRBQBZFXxN79LrTfWBRv-NPZ7-KkJTJ0ZGwMZQ9D1twPcxONn-4qPeFXrvUI6IeSECRHvz1Uqs1V428itr_gKer0eBZiOyUq5OrFXrSohoCa0fQDcjk-ynYBDTgMO2b3HsLVM69wrbgn-X7gExLSwNb1svZeuzjhaEnIgDojiNPszS4HJ6yqgB7YDLJSeUn7JNrDTiSpeZCt5iqX5ih-0rNlEKndA"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/rooms/available/customer/?StartDate=2024-04-15&EndDate=2024-04-20",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"rooms",
+										"available",
+										"customer",
+										""
+									],
+									"query": [
+										{
+											"key": "StartDate",
+											"value": "2024-04-15"
+										},
+										{
+											"key": "EndDate",
+											"value": "2024-04-20"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Receptionist",
+					"item": [
+						{
+							"name": "Get available rooms",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "CfDJ8IjtY9c42F1Lk3PyaFiDcHzTbc-7nMvr538FdEf_hnTNKnC-W7GPrxuNq2UBuAY1cT1ZyDoz9UDhIkVc4ytVdyl92kTftJbkPyV9v-qm8GD5D3pcfV1QF-gSIkIKhKn6oTu8nFHRsp7PUWT9OoiMsdAKp054jyIoRzV3TEuHIp0GTdpodJgYZzThy6bnHAtb_9meG0-x0lJEt4ZT1c90o6J9yaylZTtnJdqXWMmFW4GdHBYNCgo1U3_UNwwRfvVevhx6kq_2l6A8DAPNl-Qr_xpHsRncUos2CV0tjoX9DDmBZKhxSu5bst26KIJ-wyTMHigUgiAVzTD-_lv-hPB5U8_SNqc70Bv8nDLq6VqGap-4LgLoq-4gBBq-DANNoy8eBdXvbl5mNHms3LZVUkzK50SldqONS9zac03Fq0NyI8Tsvv7n87etn7x-q5q9W6jpDSacn-TxPQrbRTEOYackxZdejKtKhLTIb2yTQYoqge7K6Ds42yHrRO2ZuqLAEOhxInE2FONztyEWoBkyw4tFZQSsnCrW3Olee7Xj_TubghXNrU8aNzr7Doe-3wtvSxqWA09FqG13n7ejpsSbgUhxTs5X9dw6BcdEbI-bxW1bjZ52AF-nrfGyfCKB4EuFNeIW6z5nHzLJBlnZwfOMLwo9I9n_zIBya2QzDcEg42GHLi_CxV5F-07kGUDc_72Rh5eoxXNj995T4LdrdvrLcC5fkJV97yEFnTS2TvcKlgv87rILGAdwW4m6lwMTRt1GxvYOd_K40xRnvq3xg7aXRXPm_1HHoaldbfJN-YTJanx50rk22SYTM9UQg5GgFYBB38RJbQ"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/rooms/available/receptionist/?StartDate=2024-04-15&EndDate=2024-04-20",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"rooms",
+										"available",
+										"receptionist",
+										""
+									],
+									"query": [
+										{
+											"key": "StartDate",
+											"value": "2024-04-15"
+										},
+										{
+											"key": "EndDate",
+											"value": "2024-04-20"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cleaner",
+					"item": [
+						{
+							"name": "Get rooms to clean",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "CfDJ8IjtY9c42F1Lk3PyaFiDcHw_hDaMU7pggHsXEHwTZ9PKD7-bt5_eu8duzJYS4e73DNZzRMqYw-PKeWiehVXh7pVG3B7_CcWfnLwqfNSqpqU8d_8SnNDnQPlb_MgtHIkEqWVE_wffwBJgRTmWVsIHT5lAXctTJSNAYKhVaaOfr_2R5c3tbW-DqDEowxTW-PwG5PuI7i0CRxIEeB9V204Cijjgvvn0s3uriDsj4CwIvUqUsd5WurrqgXN0gSWpUWLjUEKAknfpaI16i-kgYs1JN9rudZQA9fANtjAMHzAefV6eQMWDddSn5X1zUCeSOzeuiMaMEaY4hGA1S9YietoNFZZnxVtKUAeP2vaBGHw_mPJ5iBHxZEbz5Ev5vdXZ1gNgUm8KlodH3FkDlRDdbkvExoDUqSQP01lMeNwtgaS3C4Pmrf7YapDmaq9Xgi7AW4Q_1RY4Al1v38IPcHuRtozpMtDTWdguYNa4mEMFwDYhG63EPIknDor-kx-wtIuJxPoXPDu6FhMoHtCdtujneQX-azPyQrxyQBiyW-0Uq-TfK3gknF103-bsuyo9PBL-lLXAE-7aJUEMpw35LqWE0VU3ZXiwzPIddAg6UkgsFeWMOny7qm_6EaLOqJVRjW9_a7VIRl2EJqTNesN1bvtsAubtVF1GATc0qQmRuVgY0TNKppuAS0ZI30Ur6_ig_u71_8GbEBhTs82dIiKr9JL58GID_ZA5TJ8enBL8fK25CfYie-kjgs4x-4v8vZV_P_mZAQeD8D1pE-keIuqaDynkaZM_SDlfKLDf3KaF-Fm-o1C5L8ly"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:5001/api/rooms/to-clean"
+							},
+							"response": []
+						},
+						{
+							"name": "Mark room as clean",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "CfDJ8IjtY9c42F1Lk3PyaFiDcHz4JbxZgXIuy2cm7nX3AuRcexZ-80AsHlsWZQTRLNB3jhxNg78WlwnvhbyAMmNX8xwC0Mi1v-U54qT351WAHELTyTORq2m-Yx5vNopyO9ey2eYjxz1TrAcqMRP4XeeLwEDKw0VjLwbj_yjRRLP4uGG-rjbFUNRSvFHdnulrEER_pR0mzr_5sQOhqPvj_vpZ2_0RB8EvLFdYFsHfr_zmmmEn9QN5AxaRuso0BOkZ3gGoETaN_49h4r-tW8FmZ2FepTGGGXb4wnCrFFX9wLNBth5DswvbtS4noEI3DpZIPNuMdpjX6N3_0TSy3UgyVF9OVCmD-wX3uIy3PWQTtm2Y2J4JP_KQaV1bNsHxhi5iNzDNqPWX8m8QyHRcz7wxHI16coXpOpr1AWy399L8hb5d_hTIs_7Pm9SjIuPR19St8qZd8Ik_7OjL9cD4CMJ83jx7wPW10Wg7sNaI1FcjyS-4OcyXYh9gfh566YV3iwQtU1zjyAQ3cepxid7eyW6OIDAWtmtGu1acilnBtRbhTDooGUPZAbagSof5WQOSIqJt_X2Xh41-jA8ImENG6QVtYM8GU3mqpGMo6qtZGlNyAEmMm3GhdVcHTdA0HPdwaFbW2-q6sJSuJx9e-omoNtvxXpZjuHFeOnbGnM74S5WQJgZlmezfqVunDG0vFrikXNSUx2bGPbmT8dKzzap0GWvm1HLTkOwsAmeMFzQoArlX4TPv4ZF0lQrNUlsO-YtN5ansi8FcfVzQMWc-3qODYE7QLnvU1BwyrC0IPA5Wnj372Wadj0gy"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/rooms/3/clean",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"rooms",
+										"3",
+										"clean"
+									],
+									"query": [
+										{
+											"key": "dz",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Login as admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"administrator@localhost\",\r\n    \"password\": \"Administrator1!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:5001/api/users/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Login as receptionist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"receptionist@localhost\",\r\n    \"password\": \"Receptionist1!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:5001/api/users/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Login as customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"customer@localhost\",\r\n    \"password\": \"Customer1!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:5001/api/users/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Login as cleaner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cleaner@localhost\",\r\n    \"password\": \"Cleaner1!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:5001/api/users/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Customer",
+					"item": [
+						{
+							"name": "Create booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "CfDJ8HMHVUy18VxIsPjctiVehYRrryQnru5B1vwg9IHp-npgFMChNc3Uch45j6LD5Eg2fNs7D-bM42rq4Gwh0wyWqc-SlqUhSLngpElf4UxCGuj4Z1gywR7VvaJhXyWjisBmTU3gEz2U869_96VqzfMcVTD7gAwGyd3Mrg0HhFLh4gVRwAf5maAK7fDdfJzo7JHxtRaqjoNQuJUQrRx6hg1N0UW2behsra0p7JnHDVGB8-CTOIklfGUt4zjDjCH6PDYMYCHSZ9EJVX2inUblOe0MVwGYRwtcMYSYm-E9x01DO__1ms5to0Cvf511LUKhOPBsnHObKpeg4cm76E_B4DhnYIpyeXjmXxqvV6ra_9FLGQ9_RMzUHTFokDuiJmqzZg40LwtnSxIBLeBiTXrjhPOi9Nxj4QJh7MXqy-sbFWlyfoMPDDtYKf8HZkuoP_v91L3Tue-fKU_AB6Q04LNMTNgExe_Q2ifDxRzBT_VbUfDNPZm_NPivuq4BXmuZYG77laa9_wNVDk_mq1Pe6n8kJA3--i0xv9R4Rs1UFdjcmid5SR2oiM-h0j2GMyNKE2TWJV0bXEHAlyTy-3BV6V8mWfOmIbLLAsawEU76Gy6Bwxwgdq--wXE8jW7b2-_T6q_7KyAPWjuu9ly3DsMObgssEnIxNh8nuFvuO9AwIeHjZo9MHUj6Uaa9_JExjlBs9-Y-mqD6e-l4ZqhOLxh-ZjnHzF1fH9qEjAHqmlNccp6nWuGVQ5dh0H4tN5kh3KuduT4ctUAo3AB9m0DbFE0pzJbsQg4zJ_oOfGyu2HH19dHg9lFWET1JgLvB1OvgOfniGIybb-EG_A"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"roomId\": 3,\r\n  \"startDate\": \"2024-04-11T23:11:34.517Z\",\r\n  \"endDate\": \"2024-04-15T23:11:34.517Z\",\r\n  \"payDirectly\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:5001/api/bookings"
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "CfDJ8IjtY9c42F1Lk3PyaFiDcHy8xGkVnrC83PREV_r__rlHFXtxbdqorRgzREvTWZF4i84qc8qR64N-OgP2W6Zz4Dqwkd0Rbd-3MzHGkDa8v4Q0ef7SGmjcP5PBR6fy2GiZgnvG8yZiPwGCIamk_6RHlbhBKbcr3L2PYoY5zTiPwfpKfYjRC283y1ojaYeiSxoKmjFfZrVMOcsQLUt1oBOgK0tJ2lvpx9wN-eij-4A0_iwuS1wqVte6rDgKL9S2t5dt37pmlsoql5pjTm6no9c0imPs_WcnVMBMnUv7kn7KOXyNibw6ePZ_8_cZjTgFykPhepBwkXdZ8PYDwYL4Ul0WH-kLpEzCKo2Sfm5moLUEuQKVNTnXYvGvP0RWg0toG9sn_ZhM7TBdwd363hQ-drqGBGqcEx5BGdhERa9LsQ8B7sBRyCSWaN-4SS287dC00GkerQ49tP-XJjqDq1cqxd6ziCKYxDLjmbm1VXdUMhkyuKsdlkOGgUtse4xfWX00hFmbvQ-6o_yU1m3eMHwXSNDQpIRtZbCQg6l59mUz6vQJwYr3MW4s9ASMEoQnSofF6PQjdw-bLNcp95xFVSiITImyi88HFrDknQOn4m91x4yvw5HaYLM5kzaruh0HutfI9QaoacaKApsmfMOkPEfAdcaI21VqJ1NChJzXb5SqOwrerFg92oYWJn8RSEEAinsDUDpd0QO0Nw-iWUe-Ef-q8q8nBvlrqWHrmDv_5QvroeUQJ_wtRwxvlcCAEoJl_h_ivOsevyGqYbLQsWkbkzj5jKPmgaFG6Ka2F0M-Lk3WMKEGTxf_tDI-_xlFSY8jYJPi1zwzjg"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1006,\r\n    \"withRefund\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:5001/api/bookings/1006/cancel"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Receptionist",
+					"item": [
+						{
+							"name": "Check out booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "CfDJ8IjtY9c42F1Lk3PyaFiDcHxPYMnnhYC6bo-ntjwCj3AYzddZacVsf6oJ-SdNLwq6kxgSNBn-SAcJVd4p29lnyBu9p1UcFkUED5AAlsber1Kg56AXJz9ZcPiGf_aYmXwoVwWFBsRej91psPH5w6_kxO3Jwfj8NjYPK9Gvt_PTMcENVu4ftulFu-frXmxIF4wcPQosQU-zk8UuRfNyJDYM1wRphJ1tUDzvkI5hFBM0yhXmUKX9mvnuabGkifZjas-cX65BL8SocH7h5cdEW0HDlE0JgiJP1QdnymA8KJMcs2FiCHnzPN9-hTdv-ZbFeZIlQizc5EiHTA_RODF-TNbE9JRa4pk1i_-EA3p0qDmsqM17u3HGasfqdH6Ue9qrKpIuFqp5Y_AOm8Io-Ss9my49sUfA8Pm2sRnzWLB1mdGB1ai1GMTop_DQls1WM7N7fqEmC5HCkO3pmbTa5SdVpHu6VlD34KsoVbnV05zBTzWhpY6OdvMPi4Lt39aqiOGpW7C_n_3DXGjKRHgsjGWiDFGQwmre09ALIVJMwQ22jZyfVkXFiQwTWtyjHGgqpA8ozw4f6dnP-ljwECjc62ySX0ypvPflV0YhExzM6CknuSvC04xCz0MwkrTcln-NTinu42CnYdmEzLzAzfHuo0tjvMjym8yF0dG-bmnxs_d66N5HYF2vcZFIQ9z1vn2Q5SDs6yDSvuzC1GwQQhmmGVNS7fsoQe0Eajxj9WqAnzTIWAOK111PrLD1v-VH3vRbE9KbfXxsMhpzB62cR9zWlATFxf5euSBvEGNhtalE70JcHmko7RDrCLBLW_2BZzK4SAZMCp8xBw"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1006\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:5001/api/bookings/1006/check-out"
+							},
+							"response": []
+						},
+						{
+							"name": "Check in booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "CfDJ8IjtY9c42F1Lk3PyaFiDcHzTbc-7nMvr538FdEf_hnTNKnC-W7GPrxuNq2UBuAY1cT1ZyDoz9UDhIkVc4ytVdyl92kTftJbkPyV9v-qm8GD5D3pcfV1QF-gSIkIKhKn6oTu8nFHRsp7PUWT9OoiMsdAKp054jyIoRzV3TEuHIp0GTdpodJgYZzThy6bnHAtb_9meG0-x0lJEt4ZT1c90o6J9yaylZTtnJdqXWMmFW4GdHBYNCgo1U3_UNwwRfvVevhx6kq_2l6A8DAPNl-Qr_xpHsRncUos2CV0tjoX9DDmBZKhxSu5bst26KIJ-wyTMHigUgiAVzTD-_lv-hPB5U8_SNqc70Bv8nDLq6VqGap-4LgLoq-4gBBq-DANNoy8eBdXvbl5mNHms3LZVUkzK50SldqONS9zac03Fq0NyI8Tsvv7n87etn7x-q5q9W6jpDSacn-TxPQrbRTEOYackxZdejKtKhLTIb2yTQYoqge7K6Ds42yHrRO2ZuqLAEOhxInE2FONztyEWoBkyw4tFZQSsnCrW3Olee7Xj_TubghXNrU8aNzr7Doe-3wtvSxqWA09FqG13n7ejpsSbgUhxTs5X9dw6BcdEbI-bxW1bjZ52AF-nrfGyfCKB4EuFNeIW6z5nHzLJBlnZwfOMLwo9I9n_zIBya2QzDcEg42GHLi_CxV5F-07kGUDc_72Rh5eoxXNj995T4LdrdvrLcC5fkJV97yEFnTS2TvcKlgv87rILGAdwW4m6lwMTRt1GxvYOd_K40xRnvq3xg7aXRXPm_1HHoaldbfJN-YTJanx50rk22SYTM9UQg5GgFYBB38RJbQ"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{id}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:5001/api/bookings/{id}/check-in"
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "CfDJ8IjtY9c42F1Lk3PyaFiDcHy8xGkVnrC83PREV_r__rlHFXtxbdqorRgzREvTWZF4i84qc8qR64N-OgP2W6Zz4Dqwkd0Rbd-3MzHGkDa8v4Q0ef7SGmjcP5PBR6fy2GiZgnvG8yZiPwGCIamk_6RHlbhBKbcr3L2PYoY5zTiPwfpKfYjRC283y1ojaYeiSxoKmjFfZrVMOcsQLUt1oBOgK0tJ2lvpx9wN-eij-4A0_iwuS1wqVte6rDgKL9S2t5dt37pmlsoql5pjTm6no9c0imPs_WcnVMBMnUv7kn7KOXyNibw6ePZ_8_cZjTgFykPhepBwkXdZ8PYDwYL4Ul0WH-kLpEzCKo2Sfm5moLUEuQKVNTnXYvGvP0RWg0toG9sn_ZhM7TBdwd363hQ-drqGBGqcEx5BGdhERa9LsQ8B7sBRyCSWaN-4SS287dC00GkerQ49tP-XJjqDq1cqxd6ziCKYxDLjmbm1VXdUMhkyuKsdlkOGgUtse4xfWX00hFmbvQ-6o_yU1m3eMHwXSNDQpIRtZbCQg6l59mUz6vQJwYr3MW4s9ASMEoQnSofF6PQjdw-bLNcp95xFVSiITImyi88HFrDknQOn4m91x4yvw5HaYLM5kzaruh0HutfI9QaoacaKApsmfMOkPEfAdcaI21VqJ1NChJzXb5SqOwrerFg92oYWJn8RSEEAinsDUDpd0QO0Nw-iWUe-Ef-q8q8nBvlrqWHrmDv_5QvroeUQJ_wtRwxvlcCAEoJl_h_ivOsevyGqYbLQsWkbkzj5jKPmgaFG6Ka2F0M-Lk3WMKEGTxf_tDI-_xlFSY8jYJPi1zwzjg"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1006,\r\n    \"withRefund\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:5001/api/bookings/1006/cancel"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cleaner",
+					"item": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
