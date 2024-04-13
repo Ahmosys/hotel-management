@@ -40,10 +40,10 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
         // Damn, the room Billy wanted to book doesn't exist
         Guard.Against.NotFound(request.RoomId, room);
 
-        // OK, this time the room he has chosen exists, we can go on and book it.
+        // OK, this time the room he has chosen exists, we can go on and book it
         var booking = Booking.Create(request.StartDate, request.EndDate, room);
 
-        // Gosh, billy's got so much money he wants to pay directly in cash
+        // Gosh, billy's got so much money he wants to pay directly in card
         if (request.PayDirectly)
         {
             var paymentInfo = new PaymentInfo
