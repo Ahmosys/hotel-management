@@ -75,7 +75,7 @@ Here is a UML diagram of the business-side database schema:
 
 Here is a ERD diagram of the database schema:
 
-<img src="https://i.ibb.co/dB7SNqt/erd-diagram-v1.png" />
+<img src="https://cdn.discordapp.com/attachments/1016352658350682133/1228733944451829842/erd-diagram-v1.png?ex=662d1ea9&is=661aa9a9&hm=02c07d055244b62a9547c7589ab32940518ce8b06f47d4d13fa4de2fe105e438&" />
 
 ### Database Migrations
 The database schema is managed using Entity Framework Core's migration feature, which allows us to create, update, and rollback database schema changes. The migrations are stored in the `src/Infrastructure/Data/Migrations` directory. At the start of the application, the database is automatically migrated to the latest version.
