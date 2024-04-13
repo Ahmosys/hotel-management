@@ -117,6 +117,14 @@ The application uses **role-based** authorization to control access to different
 
 ## 🌐 External Services
 
+### Email Service (IEmailService)
+
+- **Send a e-mail when customer check-out** : The application uses an external email service to send an email to the user when they check-out. You can find the usage of the email service in the `src/Application/Bookings/EventHandlers/BookingCheckedOutEventHandler.cs` file. In the Infrastructure layer, we have implemented a simple email service that logs the email content to the console just for demonstration purposes.
+
+### Payment Gateway (IPaymentGateway)
+
+- **Process payment when customer book a room or check-in** : The application uses an external payment gateway to process payments when a customer books a room or checks in. You can find the usage of the payment gateway in the `src/Application/Bookings/Commands/CreateBookingCommandHandler.cs` and `src/Application/Bookings/Commands/CheckInBookingCommandHandler.cs` files. In the Infrastructure layer, we have implemented a simple Stripe payment gateway that logs the payment details to the console just for demonstration purposes.
+
 ## ⚙️ Installation
 
 
