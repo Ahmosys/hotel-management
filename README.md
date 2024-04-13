@@ -11,7 +11,7 @@ This project involves the development of a web API application in C# dedicated t
 - **AutoMapper** :  Used for object-object mapping.
 - **FluentValidation** : Used for input validation.
 - **Quartz.NET** : Used for asynchronous task scheduling.
-- **Ardalis.GuardClauses** : Used for 
+- **Ardalis.GuardClauses** : Used for checking for invalid inputs up front and immediately failing if any are found.
 
 ### Testing
 - **NUnit** : Unit testing framework.
