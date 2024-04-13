@@ -25,7 +25,7 @@ This project involves the development of a web API application in C# dedicated t
 - **Respawn** : Used for resetting the database state between tests.
 
 
-## 🎨 Design principles and patterns
+## 🎨 Design Principles and Patterns used
 ### CQRS
 CQRS pattern is used to separate read (queries) from write (commands) operations, allowing better data management and optimized performance.
 
