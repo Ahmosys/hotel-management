@@ -69,11 +69,11 @@ The Infrastructure layer contains the implementation details, such as data acces
 The application utilizes a relational database, specifically Microsoft SQL Server LocalDB (for dev env), for storing data related to users, roles, bookings, rooms, etc. Entity Framework Core is utilized for data persistence management, providing an effective database abstraction.
 
 ### Database Schema
-Here is a UML diagram of the business-side database schema:
+Here is a **UML** diagram of the business-side database schema:
 
 // Put the UML diagram here
 
-Here is a ERD diagram of the database schema:
+Here is a **ERD** diagram of the database schema:
 
 <img src="https://cdn.discordapp.com/attachments/1016352658350682133/1228733944451829842/erd-diagram-v1.png?ex=662d1ea9&is=661aa9a9&hm=02c07d055244b62a9547c7589ab32940518ce8b06f47d4d13fa4de2fe105e438&" />
 
