@@ -85,6 +85,8 @@ Routes for **all** roles :
 - **POST /api/users/login** : Authenticate a user and generate a JWT token.
 - **POST /api/users/register** : Register a new user.
 
+👀 See more at [Identity API](https://learn.microsoft.com/fr-fr/aspnet/core/security/authentication/identity?view=aspnetcore-8.0&tabs=visual-studio).
+
 ### Rooms
 Routes for **Customer** role :
 - **GET /api/rooms/available/customer/?StartDate={StartDate}&EndDate={EndDate}** : Get available rooms between two dates.
