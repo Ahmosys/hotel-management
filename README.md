@@ -1,4 +1,9 @@
-﻿# 🏨 Hotel Management
+﻿
+<div align="center">
+<img src="https://i.ibb.co/ZhZzgqk/banner.png" />
+</div>
+
+# 🏨 Hotel Management
 This project involves the development of a web API application in C# dedicated to the management of a hotel. The application covers various essential aspects such as room booking, management of users and hotel services. The main objective is to apply object-oriented programming concepts, architecture and design patterns, while ensuring the functionality, security and quality of the code.
 
 ## 💻 Technologies
