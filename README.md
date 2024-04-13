@@ -1,7 +1,6 @@
 ﻿# 🏨 Hotel Management
 This project involves the development of a web API application in C# dedicated to the management of a hotel. The application covers various essential aspects such as room booking, management of users and hotel services. The main objective is to apply object-oriented programming concepts, architecture and design patterns, while ensuring the functionality, security and quality of the code.
 
-
 ## 💻 Technologies
 
 ### General
@@ -19,10 +18,19 @@ This project involves the development of a web API application in C# dedicated t
 - **Moq** : Mocking library for unit tests.
 - **Respawn** : Used for resetting the database state between tests.
 
-## 🎨 Design principles
 
+## 🎨 Design principles and patterns
 ### CQRS
-CQRS is used to separate read (queries) from write (commands) operations, allowing better data management and optimized performance.
+CQRS pattern is used to separate read (queries) from write (commands) operations, allowing better data management and optimized performance.
+
+### Domain Events
+Domain events pattern are used to communicate changes in the domain model, allowing the application to react to these changes and trigger appropriate actions.
+
+### Repository
+The Repository pattern is used to abstract the data access layer, providing a clean and consistent way to access data from the database.
+
+### Guard Clauses
+Guard clauses are used to validate input parameters and ensure that the application's business rules are enforced (Failing fast).
 
 ### DDD
 DDD is used to model the application's business domain, using concepts such as entities, value objects, aggregates, etc, to ensure a software design aligned with business needs.
@@ -33,17 +41,8 @@ SOLID principles are applied to ensure code quality, focusing on code simplicity
 ### Fail Fast
 The "Fail Fast" strategy is adopted to detect and report errors as soon as they occur, ensuring a quick and appropriate response to any issues.
 
-### Domain Events
-Domain events are used to communicate changes in the domain model, allowing the application to react to these changes and trigger appropriate actions.
-
 ### Mediator
 The Mediator pattern is used to decouple the components of the application, allowing them to communicate without being directly dependent on each other.
-
-### Repository
-The Repository pattern is used to abstract the data access layer, providing a clean and consistent way to access data from the database.
-
-### Guard Clauses
-Guard clauses are used to validate input parameters and ensure that the application's business rules are enforced (Failing fast).
 
 ## 🗄️Database
 The application utilizes a relational database, specifically Microsoft SQL Server LocalDB (for dev env), for storing data related to users, roles, bookings, rooms, etc. Entity Framework Core is utilized for data persistence management, providing an effective database abstraction.
@@ -55,7 +54,6 @@ Here is a UML diagram of the business-side database schema:
 
 ### Database Seeding
 The database is seeded with initial data to facilitate testing and development. The seeding process is performed when running the application using Entity Framework Core's, which populates the database with predefined data. You can find the seeding data in the `src/Infrastructure/Data/ApplicationDbContextInitialiser.cs` file.
-
 
 ## 📚 Structure
 The application is structured following the principles of Clean Architecture, which consists of four layers: Presentation (Web API), Application, Domain, and Infrastructure.
@@ -74,12 +72,12 @@ The Infrastructure layer contains the implementation details, such as data acces
 
 ## 🚦 API Endpoints
 
-### Users (provided by Microsoft Identity)
+### Users (Identity - ASP.NET Core)
 Routes for **all** roles :
 - **POST /api/users/login** : Authenticate a user and generate a JWT token.
+- **POST /api/users/register** : Register a new user.
 
 ### Rooms
-
 Routes for **Customer** role :
 - **GET /api/rooms/available/customer/?StartDate={StartDate}&EndDate={EndDate}** : Get available rooms between two dates.
   
@@ -91,7 +89,6 @@ Routes for **Receptionist** role :
 - **GET /api/rooms/available/receptionist/?StartDate={StartDate}&EndDate={EndDate}** : Get available rooms between two dates but with the status of the room (New, Renovated, NeedRenovation...). 
 
 ### Bookings
-
 Routes for **Customer** role :
 - **POST /api/bookings** : Create a new booking with possibility to pay directly.
 - **PUT /api/bookings/{bookingId}/cancel** : Cancel a booking and refund the customer if it's possible.
