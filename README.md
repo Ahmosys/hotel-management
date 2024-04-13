@@ -153,8 +153,8 @@ dotnet run
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## ✍️ Authors
-- **Hugo R.** - [Ahmosys](https://github.com/Ahmosys)
-- **Louis A.** - [louisalr](https://github.com/louisalr)
+- **HR.** - [Ahmosys](https://github.com/Ahmosys)
+- **LA.** - [louisalr](https://github.com/louisalr)
 
 
 
