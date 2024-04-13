@@ -74,7 +74,7 @@ The application utilizes a relational database, specifically Microsoft SQL Serve
 ### Database Schema
 Here is a **UML** diagram of the business-side database schema:
 
-// Put the UML diagram here
+<img src="https://cdn.discordapp.com/attachments/1016352658350682133/1228759264110317578/uml-diagram-v2.png?ex=662d363d&is=661ac13d&hm=387d8e0628538602c8ae57135707ff4843e54f3b8f37077df65cf5476a4ab073&" />
 
 Here is a **ERD** diagram of the database schema:
 
