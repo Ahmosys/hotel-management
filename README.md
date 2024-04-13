@@ -149,6 +149,13 @@ cd hotel-management/src/Web
 dotnet run
 ```
 
+4. Open your browser and navigate to `https://localhost:5001/api/index.html` to access the API documentation.
+
+5. You can also import the Postman collection from the `postman` folder to test the API endpoints.
+
+⚠️ NB : If you want to use another database, you can change the connection string in the `appsettings.json` file in the `src/Web` directory.
+
+
 ## 📝 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
