@@ -169,6 +169,12 @@ dotnet run
 ⚠️ NB : If you want to use another database, you can change the connection string in the `appsettings.json` file in the `src/Web` directory.
 
 
+## 🧪 Tests
+The application contains unit, functional and integration tests for the 3 layers (Application, Domain and Infrastructure). The tests are located in the `tests/` directory and can be run using the following command:
+```bash
+dotnet test
+```
+
 ## 🔍 Hindsight and areas for improvement
 - **Logging**: Implement a more robust logging system to track application events and errors (Serilog).
 
