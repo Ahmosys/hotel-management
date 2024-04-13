@@ -73,6 +73,9 @@ Here is a UML diagram of the business-side database schema:
 
 // Put the UML diagram here
 
+### Database Migrations
+The database schema is managed using Entity Framework Core's migration feature, which allows us to create, update, and rollback database schema changes. The migrations are stored in the `src/Infrastructure/Data/Migrations` directory. At the start of the application, the database is automatically migrated to the latest version.
+
 ### Database Seeding
 The database is seeded with initial data to facilitate testing and development. The seeding process is performed when running the application using Entity Framework Core's, which populates the database with predefined data. You can find the seeding data in the `src/Infrastructure/Data/ApplicationDbContextInitialiser.cs` file.
 
