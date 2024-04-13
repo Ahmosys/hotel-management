@@ -130,7 +130,7 @@ The application uses **role-based** authorization to control access to different
 ## 🕒 Task Scheduling (Quartz.NET)
 The application uses Quartz.NET to schedule asynchronous tasks such as sending reminder emails to customers.
 
-- **Send reminder emails to customers** : The application uses Quartz.NET to schedule a task that sends reminder emails to customers who have upcoming bookings. You can find the Quartz.NET configuration in the `src/Web/Startup.cs` file and the job implementation in the `src/Application/Bookings/ReminderJob.cs` file.
+- **Pre-stay notification to customers to inform them of the start of their stay (1 day before the start):** : The application uses Quartz.NET to schedule a task (called "Job") that sends reminder emails to customers who have upcoming bookings. You can find the Quartz.NET configuration in the `src/Infrastructure/Jobs/PreStayNotificationJobSetup.cs` file and the job implementation in the `src/Infrastructure/Jobs/PreStayNotificationJob.cs` file. The job is scheduled to run every day at 8:00 AM.
 
 ## ⚙️ Installation
 ### Prerequisites
