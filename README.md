@@ -77,7 +77,6 @@ The Infrastructure layer contains the implementation details, such as data acces
 ### Users (provided by Microsoft Identity)
 Routes for **all** roles :
 - **POST /api/users/login** : Authenticate a user and generate a JWT token.
-- 
 
 ### Rooms
 
@@ -99,7 +98,7 @@ Routes for **Customer** role :
 
 Routes for **Receptionist** role :
 - **PUT /api/bookings/{bookingId}/check-in** : Check-in a booking so the room is not available anymore.
-- **PUT /api/bookings/{bookingId}/check-out** : Check-out a booking so the room is available again and need to be cleaned.
+- **PUT /api/bookings/{bookingId}/check-out** : Check-out a booking so the room need to be cleaned.
 - **PUT /api/bookings/{bookingId}/cancel** : Cancel a booking and refund the customer if he wants to, no rules apply for the receptionist.
 
 ## 🔒 Security
