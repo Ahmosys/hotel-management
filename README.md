@@ -127,14 +127,34 @@ The application uses **role-based** authorization to control access to different
 
 ## ⚙️ Installation
 
+### Prerequisites
+- **.NET 8.0 SDK** : You need to have .NET 8.0 SDK installed on your machine to run the application.
+- **SQL Server LocalDB** : You need to have SQL Server LocalDB installed on your machine to run the application (Not mandatory, you can use another database if you want but by default the application is configured to use SQL Server LocalDB).
 
-## 🚀 Usage
+### Steps
+1. Clone the repository to your local machine:
 
+```bash
+git clone https://github.com/Ahmosys/hotel-management.git
+```
+
+2. Navigate to the `src/Web` directory:
+```bash
+cd hotel-management/src/Web
+```
+
+3. Run the application using the following command:
+
+```bash
+dotnet run
+```
 
 ## 📝 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-
-## Authors
+## ✍️ Authors
+- **Hugo R.** - [Ahmosys](https://github.com/Ahmosys)
+- **Louis A.** - [louisalr](https://github.com/louisalr)
 
 
 
