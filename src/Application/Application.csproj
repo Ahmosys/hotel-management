@@ -14,6 +14,7 @@
   <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" />
     <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Azure.Identity" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
   </ItemGroup>
