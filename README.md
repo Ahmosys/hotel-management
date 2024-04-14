@@ -123,7 +123,7 @@ In addition, we have also implement Postman collection for testing the API endpo
 ## 🔒 Security
 The application uses JWT (JSON Web Token) for authentication and authorization. The JWT token is generated when a user logs in and is used to authenticate subsequent requests. The token contains the user's claims and is validated on each request to ensure that the user has the necessary permissions to access the requested resource.
 
-The application uses **role-based** authorization to control access to different parts of the application. There are three roles defined in the application: Customer, Cleaner, and Receptionist. Each role has specific permissions and access rights to different parts of the application.
+The application uses **role-based** authorization to control access to different parts of the application. There are three roles defined in the application: Customer, Cleaner, and Receptionist. Each role has specific permissions and access rights to different parts of the application. You can find all roles defined in the `src/Domain/Constants/Roles.cs` file. The authorization is implemented using the `Authorize` attribute on the query/command, which checks if the user has the required role to access the resource. If the user does not have the required role, a 403 Forbidden response is returned. Also if the user is not authenticated, a 401 Unauthorized response is returned.
 
 ## 🌐 External Services
 ### Email Service (IEmailService)
