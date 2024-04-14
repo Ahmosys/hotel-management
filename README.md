@@ -27,28 +27,28 @@ This project involves the development of a web API application in C# dedicated t
 
 ## 🎨 Design Principles and Patterns used
 ### CQRS
-CQRS pattern is used to separate read (queries) from write (commands) operations, allowing better data management and optimized performance.
+CQRS pattern is used to separate read (queries) from write (commands) operations, allowing better data management and optimized performance. This pattern is implemented using the MediatR library, which provides a clean and consistent way to handle commands and queries. You can observe the implementation of the CQRS pattern in the `src/Application` directory, for each use case we have a command or a query, and each command/query has a handler that contains the logic for that use case. The handlers are responsible for executing the logic and returning the result to the caller. Also, for each command/query, we have a validator that validates the input parameters before executing the logic to ensure that the data is valid and consistent, for that we use the FluentValidation library.
 
 ### Domain Events
-Domain events pattern are used to communicate changes in the domain model, allowing the application to react to these changes and trigger appropriate actions.
+Domain events pattern are used to communicate changes in the domain model, allowing the application to react to these changes and trigger appropriate actions. To implement domain events, we have a `BaseEntity.cs` class in the `src/Domain/Common/` directory that contains a list of domain events. Each entity that needs to raise domain events inherits from this class and can raise domain events by calling the `AddDomainEvent()` method. The domain events are then dispatched using the MediatR library, which allows us to handle the events in a decoupled and asynchronous manner. You can observe the implementation of domain events in the `src/Domain/Entities/Booking.cs` file, where the `Booking` entity raises domain events when it is checked out. The domain event is then handled by the `BookingCheckedOutEventHandler` class in the `src/Application/Bookings/EventHandlers/` directory, which sends an email to the customer when the booking is checked out.
 
 ### Repository
-The Repository pattern is used to abstract the data access layer, providing a clean and consistent way to access data from the database.
+The Repository pattern is used to abstract the data access layer, providing a clean and consistent way to access data from the database. The repository pattern is implemented using the interfaces in the `src/Domain/Repository/` directory, which defines the common operations for entities. The repository pattern allows us to decouple the data access logic from the application logic, making it easier to test and maintain the code. You can observe the implementation of the repository pattern in the `src/Infrastructure/Data/Repository` directory, where we have concrete implementations of the repository interfaces for each entity.
 
 ### Guard Clauses
-Guard clauses are used to validate input parameters and ensure that the application's business rules are enforced (Failing fast).
+Guard clauses are used to validate input parameters and ensure that the application's business rules are enforced (Failing fast). The Guard Clauses are implemented using the Ardalis.GuardClauses library, which provides a set of guard clause methods for checking for invalid inputs up front and immediately failing if any are found. You can observe the implementation of guard clauses in the `src/Application/Bookings/Commands/CreateBookingCommandHandler.cs` file for instance, where we use guard clauses before executing the logic.
 
 ### DDD
-DDD is used to model the application's business domain, using concepts such as entities, value objects, aggregates, etc, to ensure a software design aligned with business needs.
+DDD is used to model the application's business domain, using concepts such as entities, value objects, aggregates, etc, to ensure a software design aligned with business needs. For instance, we have in each entity a set of properties that represent the entity's state and behavior. You can observe the implementation of DDD in the `src/Domain` directory, where we have the core business entities, value objects, and domain services that represent the business domain.
 
 ### SOLID
 SOLID principles are applied to ensure code quality, focusing on code simplicity, maintainability, and extensibility.
 
 ### Fail Fast
-The "Fail Fast" strategy is adopted to detect and report errors as soon as they occur, ensuring a quick and appropriate response to any issues.
+The "Fail Fast" strategy is adopted to detect and report errors as soon as they occur, ensuring a quick and appropriate response to any issues. This approach is implemented using guard clauses and input validation to check for invalid inputs up front and immediately fail if any are found.
 
 ### Mediator
-The Mediator pattern is used to decouple the components of the application, allowing them to communicate without being directly dependent on each other.
+The Mediator pattern is used to decouple the components of the application, allowing them to communicate without being directly dependent on each other. The MediatR library is used to implement the Mediator pattern, providing a clean and consistent way to handle commands and queries. You can observe the implementation of the Mediator pattern in the `src/Application` directory, where we have commands, queries, and handlers that are mediated by the MediatR library. Also in the `src/Web/Endpoints` directory, we have the controllers that mediate the communication between the API and the application layer.
 
 ### Static Factory Method
 The static factory method pattern is employed to create instances of objects, furnishing a neat and uniform approach for object creation. You can observe the implementation of the static factory method pattern in the `src/Domain/Entities/Room.cs` file for instance. This file encapsulates all properties of a room object, and the static factory method `Create()` is utilized to instantiate room objects with consistent behavior and configuration. This approach not only simplifies the process of creating objects but also ensures adherence to design principles such as encapsulation and separation of concerns.
