@@ -175,6 +175,11 @@ The application contains unit, functional and integration tests for the 3 layers
 dotnet test
 ```
 
+### 🤔 Difficulties encountered
+- **External services**: Implementing external services such as email service and payment gateway was challenging due to the need to integrate with external APIs and services.
+
+- **Domain services**: Know when it's necessary to use domain services and how to implement them was challenging because it requires a good understanding of the business domain and the separation of concerns.
+
 ## 🔍 Hindsight and areas for improvement
 - **Logging**: Implement a more robust logging system to track application events and errors (Serilog).
 
