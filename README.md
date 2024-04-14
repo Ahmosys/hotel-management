@@ -9,20 +9,20 @@ This project involves the development of a web API application in C# dedicated t
 ## 💻 Technologies
 
 ### General
-- **ASP.NET Core 8.0** : Framework used for minimal web API development.
-- **Entity Framework Core 8.0** : Used for data persistence management (ORM).
-- **MediatR** : Used for command and query mediation.
-- **AutoMapper** :  Used for object-object mapping.
-- **FluentValidation** : Used for input validation.
-- **Quartz.NET** : Used for asynchronous task scheduling.
-- **Ardalis.GuardClauses** : Used for checking for invalid inputs up front and immediately failing if any are found.
-- **NSwag** : Used for API documentation (OpenAPI).
+- **ASP.NET Core 8.0**: Framework used for minimal web API development.
+- **Entity Framework Core 8.0**: Used for data persistence management (ORM).
+- **MediatR**: Used for command and query mediation.
+- **AutoMapper**:  Used for object-object mapping.
+- **FluentValidation**: Used for input validation.
+- **Quartz.NET**: Used for asynchronous task scheduling.
+- **Ardalis.GuardClauses**: Used for checking for invalid inputs up front and immediately failing if any are found.
+- **NSwag**: Used for API documentation (OpenAPI).
 
 ### Testing
-- **NUnit** : Unit testing framework.
-- **FluentAssertions** : Fluent assertion library for unit tests.
-- **Moq** : Mocking library for unit tests.
-- **Respawn** : Used for resetting the database state between tests.
+- **NUnit**: Unit testing framework.
+- **FluentAssertions**: Fluent assertion library for unit tests.
+- **Moq**: Mocking library for unit tests.
+- **Respawn**: Used for resetting the database state between tests.
 
 
 ## 🎨 Design Principles and Patterns used
@@ -88,32 +88,32 @@ The database is seeded with initial data to facilitate testing and development. 
 
 ## 🚦 API Endpoints
 ### Users (Identity - ASP.NET Core)
-Routes for **all** roles :
-- **POST /api/users/login** : Authenticate a user and generate a JWT token.
-- **POST /api/users/register** : Register a new user.
+Routes for **all** roles:
+- **POST /api/users/login**: Authenticate a user and generate a JWT token.
+- **POST /api/users/register**: Register a new user.
 
 👀 See more at [Identity API](https://learn.microsoft.com/fr-fr/aspnet/core/security/authentication/identity?view=aspnetcore-8.0&tabs=visual-studio).
 
 ### Rooms
-Routes for **Customer** role :
-- **GET /api/rooms/available/customer/?StartDate={StartDate}&EndDate={EndDate}** : Get available rooms between two dates.
+Routes for **Customer** role:
+- **GET /api/rooms/available/customer/?StartDate={StartDate}&EndDate={EndDate}**: Get available rooms between two dates.
   
-Routes for **Cleaner** role :
-- **GET /api/rooms/to-clean** : Get all rooms to clean.
-- **PUT /api/rooms/{roomId}/clean** : Mark a room as cleaned.
+Routes for **Cleaner** role:
+- **GET /api/rooms/to-clean**: Get all rooms to clean.
+- **PUT /api/rooms/{roomId}/clean**: Mark a room as cleaned.
 
-Routes for **Receptionist** role :
-- **GET /api/rooms/available/receptionist/?StartDate={StartDate}&EndDate={EndDate}** : Get available rooms between two dates but with the status of the room (New, Renovated, NeedRenovation...). 
+Routes for **Receptionist** role:
+- **GET /api/rooms/available/receptionist/?StartDate={StartDate}&EndDate={EndDate}**: Get available rooms between two dates but with the status of the room (New, Renovated, NeedRenovation...). 
 
 ### Bookings
-Routes for **Customer** role :
-- **POST /api/bookings** : Create a new booking with possibility to pay directly.
-- **PUT /api/bookings/{bookingId}/cancel** : Cancel a booking and refund the customer if it's possible.
+Routes for **Customer** role:
+- **POST /api/bookings**: Create a new booking with possibility to pay directly.
+- **PUT /api/bookings/{bookingId}/cancel**: Cancel a booking and refund the customer if it's possible.
 
-Routes for **Receptionist** role :
-- **PUT /api/bookings/{bookingId}/check-in** : Check-in a booking so the room is not available anymore.
-- **PUT /api/bookings/{bookingId}/check-out** : Check-out a booking so the room need to be cleaned.
-- **PUT /api/bookings/{bookingId}/cancel** : Cancel a booking and refund the customer if he wants to, no rules apply for the receptionist.
+Routes for **Receptionist** role:
+- **PUT /api/bookings/{bookingId}/check-in**: Check-in a booking so the room is not available anymore.
+- **PUT /api/bookings/{bookingId}/check-out**: Check-out a booking so the room need to be cleaned.
+- **PUT /api/bookings/{bookingId}/cancel**: Cancel a booking and refund the customer if he wants to, no rules apply for the receptionist.
 
 ## 📖 API Documentation
 The API documentation is generated using NSwag and can be accessed at `https://localhost:5001/api/index.html`. It provides detailed information about the available endpoints, request/response models, and authentication requirements.
@@ -128,11 +128,11 @@ The application uses **role-based** authorization to control access to different
 ## 🌐 External Services
 ### Email Service (IEmailService)
 
-- **Send a e-mail when customer check-out** : The application uses an external email service to send an email to the user when they check-out. You can find the usage of the email service in the `src/Application/Bookings/EventHandlers/BookingCheckedOutEventHandler.cs` file. In the Infrastructure layer, we have implemented a simple email service that logs the email content to the console just for demonstration purposes.
+- **Send a e-mail when customer check-out**: The application uses an external email service to send an email to the user when they check-out. You can find the usage of the email service in the `src/Application/Bookings/EventHandlers/BookingCheckedOutEventHandler.cs` file. In the Infrastructure layer, we have implemented a simple email service that logs the email content to the console just for demonstration purposes.
 
 ### Payment Gateway (IPaymentGateway)
 
-- **Process payment when customer book a room or check-in** : The application uses an external payment gateway to process payments when a customer books a room or checks in. You can find the usage of the payment gateway in the `src/Application/Bookings/Commands/CreateBookingCommandHandler.cs` and `src/Application/Bookings/Commands/CheckInBookingCommandHandler.cs` files. In the Infrastructure layer, we have implemented a simple Stripe payment gateway that logs the payment details to the console just for demonstration purposes.
+- **Process payment when customer book a room or check-in**: The application uses an external payment gateway to process payments when a customer books a room or checks in. You can find the usage of the payment gateway in the `src/Application/Bookings/Commands/CreateBookingCommandHandler.cs` and `src/Application/Bookings/Commands/CheckInBookingCommandHandler.cs` files. In the Infrastructure layer, we have implemented a simple Stripe payment gateway that logs the payment details to the console just for demonstration purposes.
 
 ## 🕒 Task Scheduling (Quartz.NET)
 The application uses Quartz.NET to schedule asynchronous tasks such as sending reminder emails to users.
@@ -166,7 +166,7 @@ dotnet run
 
 5. You can also import the Postman collection from the `.docs/postman` folder to test the API endpoints.
 
-⚠️ NB : If you want to use another database, you can change the connection string in the `appsettings.json` file in the `src/Web` directory.
+⚠️ NB: If you want to use another database, you can change the connection string in the `appsettings.json` file in the `src/Web` directory.
 
 
 ## 🧪 Tests
