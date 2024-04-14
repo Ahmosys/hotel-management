@@ -191,6 +191,14 @@ dotnet test
 
 - **Domain services**: Implement domain services to encapsulate complex business logic and improve separation of concerns (for now the business logic is directly in the targeted entities because of the simplicity of the project).
 
+## 📚 Resources
+
+- Shoutout to [Milan Jovanović](https://www.youtube.com/@MilanJovanovicTech), that man is a god, he helped us a lot to understand Clean Architecture via his good videos.
+
+- Big thanks to the site, [deviq.com](https://deviq.com/), that helped us understand the design patterns and the architecture.
+
+- Also for [Steve Smith](https://ardalis.com/) and [Jason Taylor](https://jasontaylor.dev/) for their good articles and conferences about Clean Architecture.
+
 ## 📝 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
