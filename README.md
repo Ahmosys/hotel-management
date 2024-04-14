@@ -72,7 +72,7 @@ The Infrastructure layer contains the implementation details, such as data acces
 The application utilizes a relational database, specifically Microsoft SQL Server LocalDB (for dev env), for storing data related to users, roles, bookings, rooms, etc. Entity Framework Core is utilized for data persistence management, providing an effective database abstraction.
 
 ### Database Schema
-Here is a **UML** diagram of the business-side database schema:
+Here is a **UML** diagram:
 
 <img src="https://cdn.discordapp.com/attachments/1016352658350682133/1228759264110317578/uml-diagram-v2.png?ex=662d363d&is=661ac13d&hm=387d8e0628538602c8ae57135707ff4843e54f3b8f37077df65cf5476a4ab073&" />
 
@@ -182,7 +182,7 @@ dotnet test
 
 - **Payment Gateway**: We had to implement a simple payment gateway with the source code provided by the teacher but we don't understand how to do this because his code was a external project and he don't define interface and we don't have the permission to modify the code. So it's a little bit tricky to implement this part. For now, we have created an interface (IPaymentGateway) and we use the source code provided by the teacher (StripePaymentGateway) to implement the interface. We have also created a simple implementation of the payment gateway that logs the payment details to the console just for demonstration purposes. We don't know if it's the right way to do this but we have done our best to implement this part.
 
-- **Exceptions handling**: Implementing a consistent and robust exception handling strategy was challenging because it requires a good understanding of the application's error handling requirements and how to handle exceptions in a clean and structured way. We have used a Global Exception Handler to handle exceptions and return consistent error responses to the client with the help of ProblemDetails object. For domain exceptions, we have created custom exceptions that inherit from the base Exception class and implemented a custom exception middleware to handle domain exceptions and return appropriate error responses (400 Bad Request).
+- **Exceptions handling**: Implementing a consistent and robust exception handling strategy was challenging because it requires a good understanding of the application's error handling requirements and how to handle exceptions in a clean and structured way. We have used a Custom Exception Handler to handle exceptions and return consistent error responses to the client with the help of ProblemDetails object. For domain exceptions, we have created custom exceptions that inherit from the base Exception class and implemented a custom exception middleware to handle domain exceptions and return appropriate error responses (400 Bad Request).
 
 - **Clean Architecture**: Implementing Clean Architecture was challenging because it requires a good understanding of the architecture and design patterns. That's why we have spent a lot of time reading and understanding the concepts before starting the implementation. That's not natural to think in terms of layers and separation of concerns when you are not used to it but it's a good practice to follow.
 
