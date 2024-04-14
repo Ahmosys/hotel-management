@@ -199,6 +199,8 @@ dotnet test
 
 - Also for [Steve Smith](https://ardalis.com/) and [Jason Taylor](https://jasontaylor.dev/) for their good articles and conferences about Clean Architecture.
 
+- Finally to [Remi Henache](https://github.com/remihenache) for his courses on Clean Architecture. 
+
 ## 📝 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
