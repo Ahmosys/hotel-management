@@ -184,6 +184,8 @@ dotnet test
 
 - **Exceptions handling**: Implementing a consistent and robust exception handling strategy was challenging because it requires a good understanding of the application's error handling requirements and how to handle exceptions in a clean and structured way. We have used a Custom Exception Handler to handle exceptions and return consistent error responses to the client with the help of ProblemDetails object. For domain exceptions, we have created custom exceptions that inherit from the base Exception class and implemented a custom exception middleware to handle domain exceptions and return appropriate error responses (400 Bad Request).
 
+- **Files structure**: You have maybe noticed that we have multiple directory for instance, in Domain layer we have a directory for Entities, another for ValueObjects, another for Repository etc. This structure work well because the project is small but in a big project it can be a little bit tricky to find the right file. If the project was bigger, we would define a structure per entity for instance, a directory for each entity that contains all the files related to this entity (Repository, Service, etc).
+
 - **Clean Architecture**: Implementing Clean Architecture was challenging because it requires a good understanding of the architecture and design patterns. That's why we have spent a lot of time reading and understanding the concepts before starting the implementation. That's not natural to think in terms of layers and separation of concerns when you are not used to it but it's a good practice to follow.
 
 ## 🔍 Hindsight and areas for improvement
