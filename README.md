@@ -180,6 +180,8 @@ dotnet test
 
 - **Domain services**: Know when it's necessary to use domain services and how to implement them was challenging because it requires a good understanding of the business domain and the separation of concerns.
 
+- **Clean Architecture**: Implementing Clean Architecture was challenging because it requires a good understanding of the architecture and design patterns. That's why we have spent a lot of time reading and understanding the concepts before starting the implementation. That's not natural to think in terms of layers and separation of concerns when you are not used to it but it's a good practice to follow.
+
 ## 🔍 Hindsight and areas for improvement
 - **Logging**: Implement a more robust logging system to track application events and errors (Serilog).
 
