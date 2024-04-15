@@ -162,7 +162,7 @@ cd hotel-management/src/Web
 dotnet run
 ```
 
-4. Open your browser and navigate to `https://localhost:5001/api/index.html` to access the API documentation.
+4. Open your browser and navigate to `https://localhost:5001/api/index.html?url=/api/specification.json` to access the API documentation.
 
 5. You can also import the Postman collection from the `.docs/postman` folder to test the API endpoints.
 
