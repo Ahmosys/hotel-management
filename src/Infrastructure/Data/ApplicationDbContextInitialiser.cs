@@ -159,6 +159,8 @@ public class ApplicationDbContextInitialiser
 
             booking.CreatedBy = customer.Id;
 
+            _context.Bookings.Add(booking);
+
             await _context.SaveChangesAsync();
         }
 
