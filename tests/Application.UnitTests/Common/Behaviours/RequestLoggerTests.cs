@@ -9,14 +9,12 @@ namespace HotelManagement.Application.UnitTests.Common.Behaviours;
 
 public class RequestLoggerTests
 {
-    private Mock<ILogger<CreateTodoItemCommand>> _logger = null!;
     private Mock<IUser> _user = null!;
     private Mock<IIdentityService> _identityService = null!;
 
     [SetUp]
     public void Setup()
     {
-        _logger = new Mock<ILogger<CreateTodoItemCommand>>();
         _user = new Mock<IUser>();
         _identityService = new Mock<IIdentityService>();
     }

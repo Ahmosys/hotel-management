@@ -3,9 +3,6 @@ using System.Runtime.CompilerServices;
 using AutoMapper;
 using HotelManagement.Application.Common.Interfaces;
 using HotelManagement.Application.Common.Models;
-using HotelManagement.Application.TodoItems.Queries.GetTodoItemsWithPagination;
-using HotelManagement.Application.TodoLists.Queries.GetTodos;
-using HotelManagement.Domain.Entities;
 using NUnit.Framework;
 
 namespace HotelManagement.Application.UnitTests.Common.Mappings;
