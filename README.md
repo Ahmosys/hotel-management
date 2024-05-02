@@ -74,11 +74,11 @@ The application utilizes a relational database, specifically Microsoft SQL Serve
 ### Database Schema
 Here is a **UML** diagram:
 
-<img src="https://cdn.discordapp.com/attachments/1016352658350682133/1228759264110317578/uml-diagram-v2.png?ex=662d363d&is=661ac13d&hm=387d8e0628538602c8ae57135707ff4843e54f3b8f37077df65cf5476a4ab073&" />
+<img src="https://github.com/Ahmosys/hotel-management/blob/master/.docs/diagrams/uml-diagram-v2.png?raw=true" />
 
 Here is a **ERD** diagram of the database schema:
 
-<img src="https://cdn.discordapp.com/attachments/1016352658350682133/1228733944451829842/erd-diagram-v1.png?ex=662d1ea9&is=661aa9a9&hm=02c07d055244b62a9547c7589ab32940518ce8b06f47d4d13fa4de2fe105e438&" />
+<img src="https://github.com/Ahmosys/hotel-management/blob/master/.docs/diagrams/erd-diagram-v1.png?raw=true" />
 
 ### Database Migrations
 The database schema is managed using Entity Framework Core's migration feature, which allows us to create, update, and rollback database schema changes. The migrations are stored in the `src/Infrastructure/Data/Migrations` directory. At the start of the application, the database is **automatically** migrated to the latest version.
