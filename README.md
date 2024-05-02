@@ -1,6 +1,6 @@
 ﻿
 <div align="center">
-<img src="https://cdn.discordapp.com/attachments/1016352658350682133/1228734146332070069/banner.png?ex=662d1ed9&is=661aa9d9&hm=2637b6742ab6b692ff07c7ae3bf4078d3bd2453621f6b2f08769baceaf4bb961&" />
+<img src="https://cdn.discordapp.com/attachments/851558537053995008/1235718916056023132/banner2.png?ex=6635646c&is=663412ec&hm=4e725f6c82f4a465a2fc91c35c934c1945aacc23a59593c2c7dda34c050d1d0d&" />
 </div>
 
 # 🏨 Hotel Management
