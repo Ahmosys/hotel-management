@@ -1,10 +1,11 @@
-﻿
-<div align="center">
-<img src="https://cdn.discordapp.com/attachments/851558537053995008/1235718916056023132/banner2.png?ex=6635646c&is=663412ec&hm=4e725f6c82f4a465a2fc91c35c934c1945aacc23a59593c2c7dda34c050d1d0d&" />
+﻿<div align="center">
+  <img src=".docs/images/img-banner.png" alt="Banner">
 </div>
 
 # 🏨 Hotel Management
 This project involves the development of a web API application in C# dedicated to the management of a hotel. The application covers various essential aspects such as room booking, management of users and hotel services. The main objective is to apply object-oriented programming concepts, architecture and design patterns, while ensuring the functionality, security and quality of the code.
+
+
 
 ## 💻 Technologies
 
